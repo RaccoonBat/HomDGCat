@@ -1,149 +1,35 @@
-[中文文档](README.zh-CN.md)
-
 # HomDGCat Wiki Mirror
 
-A complete offline mirror of [homdgcat.wiki](https://homdgcat.wiki), covering characters, weapons, artifacts/relics and more from Genshin Impact and Honkai: Star Rail.
+[homdgcat.wiki](https://homdgcat.wiki) 的完整离线镜像，涵盖原神和崩坏：星穹铁道的角色、武器、圣遗物/遗器等数据。
 
-## Contents
+## 内容
 
-- 15,357 files, ~2.5 GB
-- 575+ pages (Genshin + Star Rail characters/weapons/artifacts, etc.)
-- 4,580+ dynamic subpages (quests, items, monsters, GCG cards, etc.)
-- Data files in 5 languages (CH / EN / JP / KR / RU)
-- All image assets (avatars, skill icons, weapon art, gacha art, etc.)
-- TextMap localization data
+- [中文文档](README.zh-CN.md) | [English](README.en-US.md)
 
 ## Quick Start
 
-### Get Site Data
+### 本地开发流程
 
-The site data (`site/` directory, ~2.5 GB) is not included in this repository. Three ways to obtain it:
+1. 请使用稳定的梯子
 
-**Option 1: Download from GitHub Releases (Recommended)**
+2. 将仓库克隆至本地后，可以直接运行 `python main.py serve` 启动本地服务器，即可看见本地站点
 
-Download `site.7z` from the [latest release](https://github.com/NewbieXvwu/HomDGCat/releases) and extract it to the project root:
+3. 如有修改，请不要直接提交！！github 限制大于100Mb的文件上传，请使用 LFS！！！
 
-```bash
-# Download (~2 GB)
-curl -LO https://github.com/NewbieXvwu/HomDGCat/releases/download/initial/site.7z
-
-# Extract (requires 7-Zip)
-7z x site.7z
-```
-
-**Option 2: Download from Internet Archive**
-
-If GitHub is unavailable, download from [Internet Archive](https://archive.org/details/homdgcat-wiki-mirror):
+4. 请使用 LFS 存储大文件，本地安装 github LFS 后，运行
 
 ```bash
-ia download homdgcat-wiki-mirror site.7z
-7z x site.7z
-```
 
-**Option 3: Pull from the source site**
+git lfs install
 
-Download all files directly from homdgcat.wiki (may fail if the source site is unstable):
-
-```bash
-# Default (10 threads)
-python main.py download
-
-# 16 threads
-python main.py download --workers 16
-
-# Check progress
-python main.py status
-```
-
-The script reads file paths from `filelist.txt` and downloads all missing files into `site/`. Existing files are skipped automatically; supports resuming interrupted downloads.
-
-### Browse Locally
-
-```bash
-# Default port 9000
-python main.py serve
-
-# Custom port
-python main.py serve --port 3000
-```
-
-Open `http://localhost:9000` in your browser to browse the full site.
-
-## Server Engines
-
-The script supports two server engines and auto-detects availability:
-
-### stdlib mode (zero dependencies)
-
-Works out of the box with no third-party packages. Based on Python's `http.server`:
-
-- HTTP/1.1 + keep-alive
-- Multi-threaded request handling
-- gzip compression (with LRU cache)
-- ETag / 304 conditional requests
-- Tiered Cache-Control headers
-
-Suitable for personal local browsing.
-
-### ASGI mode (recommended)
-
-Auto-enabled when dependencies are installed:
-
-```bash
-pip install starlette hypercorn h2
-```
-
-Based on hypercorn + starlette:
-
-- Async I/O, far better concurrency than threading
-- HTTP/2 support (requires TLS certificate)
-- Production-grade connection management and timeouts
-- gzip compression + ETag / 304
-- Path traversal protection
-
-Enable HTTPS + HTTP/2:
-
-```bash
-python main.py serve --cert cert.pem --key key.pem
-```
-
-## File Structure
+git lfs track "site/TextMap/*.json"
 
 ```
-main.py               # Unified tool script (download / serve / status)
-filelist.txt         # Complete file list (15,357 entries)
-site/                # Site files directory
-  index/             # Homepage
-  sr/char/           # Star Rail character pages
-  gi/char/           # Genshin character pages
-  data/{CH,EN,...}/  # Star Rail multi-language data
-  gi/{CH,EN,...}/    # Genshin multi-language data
-  images/            # Star Rail image assets
-  homdgcat-res/      # Genshin image assets
-  TextMap/           # TextMap localization data
-```
 
-## Command Reference
+5. 上述命令一定要在提交之前执行，告诉git lfs 要跟踪的文件，否则必然提交不成功
 
-| Command | Description |
-|---------|-------------|
-| `download` | Download all missing files |
-| `download -w 16` | Use 16 concurrent threads |
-| `download -r 5` | Retry failed downloads 5 times |
-| `serve` | Start local server |
-| `serve -p 3000` | Custom port |
-| `serve --cert X --key Y` | Enable HTTPS/HTTP2 |
-| `status` | Show download progress |
-| `--lang en` | Force English output |
-| `--lang zh` | Force Chinese output |
+6. 后续为区分原和铁，我会将两者的文件夹逐步切分，原作者混杂在一起的数据也会整理重新上传
 
-## Requirements
+## 许可
 
-- Python 3.8+
-- Download: no third-party dependencies
-- Server (stdlib mode): no third-party dependencies
-- Server (ASGI mode): `starlette`, `hypercorn`, `h2`
-
-## License
-
-This tool is intended for personal offline backup of homdgcat.wiki. All site content is copyrighted by its original authors.
+本工具仅用于 homdgcat.wiki 的个人离线备份。内容版权归 MHY/妮可少女 所有。

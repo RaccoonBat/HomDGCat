@@ -17,9 +17,9 @@
 
 ### 获取站点数据
 
-站点数据（`site/` 目录，约 2.5 GB）不包含在本仓库中。有三种方式获取：
+站点数据（`site/` 目录，约 2.5 GB）已经包含在本仓库中。如果需要单独获取：
 
-**方式一：从 GitHub Releases 下载（推荐）**
+**方式：从 GitHub Releases 下载（推荐）**
 
 从 [Releases 页面](https://github.com/NewbieXvwu/HomDGCat/releases) 下载 `site.7z`，解压到项目根目录：
 
@@ -30,32 +30,6 @@ curl -LO https://github.com/NewbieXvwu/HomDGCat/releases/download/initial/site.7
 # 解压（需要 7-Zip）
 7z x site.7z
 ```
-
-**方式二：从 Internet Archive 下载**
-
-如果 GitHub 不可用，可从 [Internet Archive](https://archive.org/details/homdgcat-wiki-mirror) 下载：
-
-```bash
-ia download homdgcat-wiki-mirror site.7z
-7z x site.7z
-```
-
-**方式三：从源站拉取**
-
-直接从 homdgcat.wiki 下载全部文件（源站不稳定时可能失败）：
-
-```bash
-# 基本用法（10 线程）
-python main.py download
-
-# 16 线程加速
-python main.py download --workers 16
-
-# 查看下载进度
-python main.py status
-```
-
-脚本会读取 `filelist.txt` 中的文件列表，下载所有缺失文件到 `site/` 目录。已存在的文件会自动跳过，支持断点续传。
 
 ### 本地浏览
 
