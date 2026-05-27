@@ -1,1 +1,2 @@
 site/TextMap/*.json filter=lfs diff=lfs merge=lfs -text
+site/TextMap/GI.json filter=lfs diff=lfs merge=lfs -text
