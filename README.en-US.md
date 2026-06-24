@@ -91,9 +91,7 @@ site/                # Site files directory
   sr/char/           # Star Rail character pages
   gi/char/           # Genshin character pages
   data/{CH,EN,...}/  # Star Rail multi-language data
-  gi/{CH,EN,...}/    # Genshin multi-language data
   images/            # Star Rail image assets
-  homdgcat-res/      # Genshin image assets
   TextMap/           # TextMap localization data
 ```
 
