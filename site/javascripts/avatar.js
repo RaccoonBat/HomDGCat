@@ -339,22 +339,10 @@ $(function () {
                                     },
                                     class: 'c_a_w'
                                 },
-                                {
-                                    div: {
-                                        img: '/homdgcat-res/UI/birthday-cake2.png'
-                                    },
-                                    class: 'cntd_emote_small',
-                                    when: anniversary
-                                },
                             ],
                             class: 'c1 c_f',
                             when: ($('#UPDATE').val() != 11) && ($('#UPDATE').val() != 17) && ($('#UPDATE').val() != 41)
                         },
-                        /*{
-                            p: '-',
-                            class: 'countdown',
-                            when: ($('#UPDATE').val() != 11) && ($('#UPDATE').val() != 17) && ($('#UPDATE').val() != 41)
-                        },*/
                         {
                             section: [
                                 {

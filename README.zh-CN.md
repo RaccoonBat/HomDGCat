@@ -93,7 +93,6 @@ site/                # 站点文件目录
   data/{CH,EN,...}/  # 星铁多语言数据
   gi/{CH,EN,...}/    # 原神多语言数据
   images/            # 星铁图片资源
-  homdgcat-res/      # 原神图片资源
   TextMap/           # 文本映射数据
 ```
 

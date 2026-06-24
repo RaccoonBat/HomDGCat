@@ -129,14 +129,6 @@ $(function () {
                 EN: 'Wiki\'s <color style="color:#FFD780;">Multiple</color> <color style="color:#F29E38;">Colors</color>'
             },
             {
-                CH: '随处可见的灰色背景：<color style="color:#EEEEEE;"><b> #27363E </b></color>，这是我从原神的角色技能界面提取的背景颜色',
-                EN: 'Grey background color everywhere:<color style="color:#EEEEEE;"> <b> #27363E </b></color> . This is the background color I extracted from GI characters\' talent description pages.'
-            },
-            {
-                CH: '文字颜色一：<color style="color:#FFD780;"><b> #FFD780 </b></color>，这是原神的高亮文字颜色',
-                EN: 'Text highlight 1:<color style="color:#FFD780;"> <b> #FFD780 </b></color> . This is the color of highlighted text in GI.'
-            },
-            {
                 CH: '文字颜色二：<color style="color:#F29E38;"><b> #F29E38 </b></color>，这是星穹铁道的高亮文字颜色',
                 EN: 'Text highlight 2:<color style="color:#F29E38;"> <b> #F29E38 </b></color> . This is the color of highlighted text in HSR.'
             }
@@ -234,19 +226,6 @@ $(function () {
                                     'text-align': 'center'
                                 }
                             },
-                            {
-                                div: [
-                                    {
-                                        img: '/homdgcat-res/UI/Alipay.png',
-                                        class: 'Alipay'
-                                    },
-                                    {
-                                        img: '/homdgcat-res/UI/Wechat_2.png',
-                                        class: 'Wechat'
-                                    }
-                                ],
-                                class: 'pay'
-                            }
                         ],
                         class: 'block_1 blk',
                         when: 0
@@ -357,37 +336,4 @@ $(function () {
             }
         }
     })
-
-    console.log("FINISH")
-
-    $('body').on('click', '.Alipay', function () {
-        download('/homdgcat-res/UI/Alipay.png', '支付宝 Alipay')
-    })
-
-    $('body').on('click', '.Wechat', function () {
-        download('/homdgcat-res/UI/Wechat_2.png', '微信 Wechat')
-    })
-
-    $('body').on('click', '.Paypal', function () {
-        download('/homdgcat-res/UI/Paypal.png', 'Paypal')
-    })
-
-    function download(link, name) {
-        $('.temp').remove()
-        $('.content').render({
-            a: link,
-            attr: {
-                download: `${name}.png`
-            },
-            style: {
-                display: 'none'
-            },
-            t: {
-                p: 'temp'
-            },
-            class: 'temp'
-        })
-        $('.temp p').click()
-    }
-
 })

@@ -240,16 +240,6 @@ $(function () {
                                     template: {
                                         tr: [
                                             {
-                                                td: [{
-                                                    img: imgpre + 'homdgcat-res/Csxylic/Primo.png',
-                                                    class: 'jade'
-                                                }, ach.Reward.toString()],
-                                                style: {
-                                                    'text-align': 'center',
-                                                    'padding': '5px'
-                                                }
-                                            },
-                                            {
                                                 td: '<b>' + ach.Name + '</b><br>' + ach.Desc
                                             },
                                             {
