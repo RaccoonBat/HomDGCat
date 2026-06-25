@@ -1,59 +1,19 @@
 $(function() {
 
-    var anniversary = 0
-    var quest_allow = 1
-    var cur_time = Date.now()
-    var keqing_birthday = Date.parse('2025-11-20T00:00:00+08:00')
-    var show_yhb = (cur_time >= keqing_birthday)
-    console.log(cur_time)
-    if ((cur_time >= Date.parse('2025-10-08T04:00:00+08:00')) && (cur_time <= Date.parse('2025-12-21T04:00:00+08:00'))) anniversary = 1
-    
     var lazy = $('#NOLAZY').val() ? '' : 'lazy'
     var bg_name = $('#NOLAZY').val() ? 'bg_2' : 'bg'
 
-    var cookie_lang = "CH"
-    document.cookie.split(";").forEach(function (c) { 
-        if ((c.includes('lang=')) && !(c.includes('session'))) {
-            cookie_lang = c.substring(c.indexOf('lang=') + 5, c.indexOf('lang=') + 7)
-        }
-    });
-    var AVAILABLE_LANG = ["CH", "EN", "RU", "JP", "KR", "DE", "FR", "SP", "PT"]
-
-    var param_lang = $('#LANG').val().toUpperCase()
-    if (param_lang == "ES") param_lang = "SP"
-    var store_lang = param_lang
-    if (!AVAILABLE_LANG.includes(store_lang)) {
-        store_lang = "CH"
-    }
-    var lang3 = "CH"
-    if (param_lang) {
-        var DATE = new Date()
-        document.cookie = 'lang=' + store_lang + ';expires=' + new Date(DATE.getTime() + 8640000000).toUTCString() + ';path=/'
-        lang3 = store_lang
-    } else {
-        lang3 = cookie_lang
-    }
-    var lang2 = lang3
-    if ((lang2 != "CH") && (lang2 != "EN") && (lang2 != "RU")) lang2 = "EN"
-    var lang = lang2
-    if (lang == "RU") lang = "EN"
     var meow = April_1st ? ((lang == 'CH') ? '喵' : '~') : ''
     var meow2 = April_1st ? ((lang == 'CH') ? '帕' : '~') : ''
 
     function start_cntd() {
         countdown_ver_1 = ""
         countdown_time_1 = 0
-        countdown_ver_2 = ""
-        countdown_time_2 = 0
         countdown_note_1 = ""
-        countdown_note_2 = ""
-        if (SR_DATES[VER_SR] && GI_DATES[VER_GI]) {
-            countdown_ver_1 = GI_DATES[VER_GI][0]
-            countdown_time_1 = GI_DATES[VER_GI][1]
-            countdown_ver_2 = SR_DATES[VER_SR][0]
-            countdown_time_2 = SR_DATES[VER_SR][1]
-            if (GI_DATES[VER_GI][2] != undefined) countdown_note_1 = "<br>" + GI_DATES[VER_GI][2][(lang == 'CH') ? 0 : 1]
-            if (SR_DATES[VER_SR][2] != undefined) countdown_note_2 = "<br>" + SR_DATES[VER_SR][2][(lang == 'CH') ? 0 : 1]
+        if (SR_DATES[VER_SR]) {
+            countdown_ver_1 = SR_DATES[VER_SR][0]
+            countdown_time_1 = SR_DATES[VER_SR][1]
+            if (SR_DATES[VER_SR][2] != undefined) countdown_note_1 = "<br>" + SR_DATES[VER_SR][2][(lang == 'CH') ? 0 : 1]
             cntd_0()
             setInterval(cntd_0, 1000)
         } else {
@@ -62,39 +22,14 @@ $(function() {
     }
 
     function cntd_0() {
-        cntd(countdown_time_1, countdown_ver_1, '.c1_b', '.c1_a', 1600135200000, (lang == 'CH') ? '刻晴' : 'Keqing', countdown_note_1)
-        cntd(countdown_time_2, countdown_ver_2, '.c2_b', '.c2_a', 1722394800000, (lang == 'CH') ? '云璃' : 'Yunli', countdown_note_2)
+        cntd(countdown_time_1, countdown_ver_1, '.c1_b', '.c1_a', 1722394800000, (lang == 'CH') ? '云璃' : 'Yunli', countdown_note_1)
     }
 
     function cntd(a, c, b, div2, birthday_stamp, char_name, _note) {
         var now = Date.now()
         var diff = a - now
         var age_d = parseInt((now - birthday_stamp) / 86400000)
-        if (age_d % 100 == 0) age_d = "<color style='color:#DD0000'>" + age_d + '</color>'
-        if (anniversary && (div2 == '.c1_a')) {
-            if (now >= keqing_birthday) {
-                var age_s = parseInt((now - keqing_birthday) / 86400000)
-                if (age_s == 0) {
-                    $(div2).html({
-                        CH: `刻晴生日快乐！`,
-                        EN: `Happy Birthday, Keqing!`
-                    }[lang])
-                } else {
-                    $(div2).html({
-                        CH: `${char_name}生日 : <b><color style='color:#DD0000'>${age_s}</color></b> 天前`,
-                        EN: `${char_name}'s birthday: <b><color style='color:#DD0000'>${age_s}</color></b> days ago`
-                    }[lang])
-                }
-            } else {
-                var age_s = parseInt((keqing_birthday - now) / 86400000)
-                $(div2).html({
-                    CH: `${char_name}生日 : <b><color style='color:#DD0000'>${age_s}</color></b> 天后`,
-                    EN: `${char_name}'s birthday: In <b><color style='color:#DD0000'>${age_s}</color></b> days`
-                }[lang])
-            }
-        } else {
-            $(div2).html((lang == 'CH') ? `${char_name} : <b>${age_d}</b> 天` : `${char_name}: <b>${age_d}</b> days old`)
-        }
+        $(div2).html((lang == 'CH') ? `${char_name} : <b>${age_d}</b> 天` : `${char_name}: <b>${age_d}</b> days old`)
         if (a == 0) {
             $(b).html(c + " " + (lang == 'CH' ? '时间未知' : 'Time unknown') + _note)
             $(b + '_').html(c + " " + (lang == 'CH' ? '时间未知' : 'Time unknown') + _note)
@@ -138,9 +73,9 @@ $(function() {
         diff -= hours * 3600000
         var minutes = Math.floor(diff / 60000)
         if (!days) {
-            return hours + (lang == 'CH' ? '小时 ' : "h ")// + minutes + (lang == 'CH' ? '分' : "m")
+            return hours + (lang == 'CH' ? '小时 ' : "h ")
         } else {
-            return days + (lang == 'CH' ? '天 ' : "d ")// + hours + (lang == 'CH' ? '小时' : "h")
+            return days + (lang == 'CH' ? '天 ' : "d ")
         }
     }
 
@@ -156,7 +91,7 @@ $(function() {
         $(output_table + '_2').render({
             p: (lang == 'CH') ? `${char_name} : <b>${age_d}</b> 天` : `${char_name}: <b>${age_d}</b> days old`
         })
-        
+
         var data_list = []
         var cumulated_stamp = start_timestamp
         for (const ver_data of time_list) {
@@ -165,7 +100,7 @@ $(function() {
                     stamp: cumulated_stamp + offset[0] * 3600000,
                     time: new Date(cumulated_stamp + offset[0] * 3600000).toISOString().substring(0, 10),
                     text: "<color style='color:rgb(255, 172, 255'><b>" + ver_data.V + '</b></color>' + (lang == 'CH' ? ' 测试服' : ' Beta')
-                })  
+                })
             }
             data_list.push({
                 stamp: cumulated_stamp + offset[1] * 3600000,
@@ -223,19 +158,8 @@ $(function() {
     if (lang == 'EN') {$('body').css('font-family', "'Segoe UI', sans-serif")}
     else {$('body').css('font-family', "'Microsoft YaHei', sans-serif")}
 
-    default_game = 'GI'
-    document.cookie.split(";").forEach(function (c) { 
-        if ((c.includes('game=')) && !(c.includes('session'))) {
-            default_game = c.substring(c.indexOf('game=') + 5, c.indexOf('game=') + 7)
-        }
-    });
+    $('h3 .title').html(txt.Title[lang] + "<color style='font-size: 28px;'><br><b>" + VER_SR + "</b></color>")
 
-    var cur_select = 1
-    var GAME = default_game
-    var GAME_DATE = $("#GAME").val()
-    
-    $('h3 .title').html(txt.Title[lang] + "<color style='font-size: 28px;'><br><b>" + VER_GI + " / " + VER_SR + "</b></color>")
-    
     var imgpre = $('#IMGPRE').val()
     $('h3 .links').render([
         {
@@ -252,7 +176,7 @@ $(function() {
         popLinks(lang)
     })
 
-    $('h3 .lang').html(txt.Home_Lang_)
+    $('h3 .lang').html(txt.Home_Lang)
     $('.lang').hide()
 
     $('container').render({
@@ -263,7 +187,7 @@ $(function() {
                         schedule: txt.Home_Sections[0][lang],
                         a: {
                             'data-id': 2,
-                            'class': GAME == 'SR' ? 'active' : ''
+                            'class': 'active'
                         },
                         style: {
                             'display': 'flex',
@@ -295,7 +219,7 @@ $(function() {
                         div: [
                             {
                                 div: {
-                                    img: '/images/emote/Keqing/1.png'
+                                    img: '/images/emote/Yunli/1.png'
                                 },
                                 class: 'cntd_emote'
                             },
@@ -306,94 +230,16 @@ $(function() {
                                 },
                                 class: 'c_a_w'
                             },
-                            {
-                                div: {
-                                    img: '/UI/birthday-cake2.png'
-                                },
-                                class: 'cntd_emote_small',
-                                when: anniversary
-                            },
                         ],
                         class: 'countdown_small c1 c_f'
-                    },
-                    {
-                        div: [
-                            {
-                                div: {
-                                    img: '/images/emote/Yunli/1.png'
-                                },
-                                class: 'cntd_emote'
-                            },
-                            {
-                                div: {
-                                    p: '',
-                                    class: 'c2_a',
-                                },
-                                class: 'c_a_w'
-                            },
-                        ],
-                        class: 'countdown_small c2 c_f'
                     },
                     {
                         p: '',
                         class: 'countdown c1 c1_b',
                         when: 0
-                    },
-                    {
-                        p: '',
-                        class: 'countdown c2 c2_b',
-                        when: 0
                     }
                 ],
                 class: 'cntd_wrap'
-            },
-            {
-                div: [
-                    {
-                        section: [
-                            {
-                                schedule: {
-                                    a: '/keq',
-                                    t: {
-                                        span: '妮可少女的刻晴足迹',
-                                        style: {
-                                            'margin': 'auto',
-                                            'font-weight': 'bold',
-                                        }
-                                    }
-                                },
-                                class: 'hover-shadow panel',
-                                style: {
-                                    width: 'max-content',
-                                    border: '2px solid #7030a0',
-                                }
-                            },
-                            {
-                                schedule: {
-                                    a: '/yhb',
-                                    t: {
-                                        span: '刻晴生贺：玉衡杯重现',
-                                        style: {
-                                            'margin': 'auto',
-                                            'font-weight': 'bold',
-                                        },
-                                    },
-                                },
-                                when: show_yhb,
-                                class: 'hover-shadow panel',
-                                style: {
-                                    width: 'max-content',
-                                    border: '2px solid #CC0000',
-                                },
-                            },
-                        ],
-                        when: lang == 'CH',
-                    }
-                ],
-                class: 'd1',
-                style: {
-                    'justify-content': 'center'
-                }
             },
             {
                 div: [
@@ -554,7 +400,7 @@ $(function() {
                             class: 'new_attr'
                         },
                         {
-                            p: `[[Name/${(lang3 == 'RU') ? 'EN' : lang3}]]${meow2}`,
+                            p: `[[Name/${lang3}]]${meow2}`,
                             class: 'new_text',
                             style: {
                                 color: function (d) {
@@ -608,8 +454,7 @@ $(function() {
                                 class: 'ctable table_sr'
                             }
                         ],
-                        class: 'futd_sr futds',
-                        when: GAME_DATE != "GI_DATE"
+                        class: 'futd_sr futds'
                     }
                 ],
                 class: 'futd'
@@ -622,77 +467,24 @@ $(function() {
     start_fntd(SR_Stamp, SR_Times, '.table_sr', [-25, -359, -279.5], 1722394800000, '/images/emote/Yunli/1.png', (lang == 'CH') ? '云璃' : 'Yunli')
     start_cntd()
 
-    if (GAME == 'SR') renderSR()
-    if (GAME_DATE) {
-        renderAbout()
-        $('.home_select schedule').removeClass('active')
-        $('#date_schedule').addClass('active')
-    }
-
     $('body').addClass(bg_name)
-
-    function renderSR() {
-        $('.c1').hide()
-        $('.c2').show()
-        $('.d1').hide()
-        $('.d2').show()
-        $('.n1').hide()
-        $('.n2').show()
-        $('.futd').hide()
-        $('.below').css('background-color', '')
-        $('.below').show().empty().render({
-            template: {
-                div : {
-                    a: function (k) {
-                        if (k.data.Disable) return 'javascript:void(0)'
-                        return k.data.Href[lang]
-                    },
-                    t: [
-                        {
-                            div: {
-                                span: `[[Title/${lang}]]`,
-                            },
-                            class: 'dir_head'
-                        },
-                    ],
-                    class: 'dir hover-shadow',
-                    data: SR
-                },
-                class: 'dir_wrap'
-            }
-        })
-        var DATE = new Date()
-        document.cookie = 'game=SR;expires=' + new Date(DATE.getTime() + 8640000000).toUTCString() + ';path=/'
-    }
-
-    function renderAbout() {
-        $('.c2').hide()
-        $('.c1').hide()
-        $('.d2').hide()
-        $('.d1').hide()
-        $('.n2').hide()
-        $('.n1').hide()
-        $('.futd').show()
-        $('.below').css('background-color', 'transparent')
-        $('.below').hide()
-    }
 
     $('body').on('click', '.home_select schedule', function () {
         if($(this).hasClass('active')) {
             return
         }
         $(this).addClass('active').siblings('schedule').removeClass('active');
-        cur_select = $(this).attr('data-id')
+        var cur_select = $(this).attr('data-id')
         switch (cur_select) {
             case '2':
-                renderSR();
-                GAME = 'SR'
                 break;
             case '3':
-                renderAbout();
+                $('.futd').show()
+                $('.below').css('background-color', 'transparent')
+                $('.below').hide()
                 break;
         }
-        $('h3 .lang').html(txt.Home_Lang_)
+        $('h3 .lang').html(txt.Home_Lang)
     })
 
     $('body').on('click', '.didyouknow', function() {

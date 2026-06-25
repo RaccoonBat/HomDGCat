@@ -4,9 +4,6 @@ var enable_about = 1
 var quest_allow = 1
 
 var anniversary_show = 0
-var cur_time_0 = Date.now()
-var keqing_birthday = Date.parse('2025-11-20T00:00:00+08:00')
-var show_yhb = (cur_time_0 >= keqing_birthday)
 
 var txt = {
     "game_img": {
@@ -18,14 +15,12 @@ var txt = {
         "EN": "HomDGCat Wiki",
     },
     "PAGE_TITLE": {
-        "CH": "玉衡杯数据库 - 原神 崩坏星穹铁道 数据库 - 妮可少女 HomDGCat",
-        "EN": "HomDGCat Wiki - Genshin Impact & Honkai Star Rail Wiki By HomDGCat 妮可少女",
-        "RU": "HomDGCat Wiki - Genshin Impact & Honkai Star Rail Wiki By HomDGCat 妮可少女",
+        "CH": "玉衡杯数据库 - 崩坏星穹铁道 数据库 - 妮可少女 HomDGCat",
+        "EN": "HomDGCat Wiki - Honkai Star Rail Wiki By HomDGCat 妮可少女",
     },
     "Title": {
         "CH": "<img src='/UI/_logo_2.png' class='logo_img_yhb'>",
         "EN": "<img src='/UI/_logo_3.png' class='logo_img_yhb'>",
-        "RU": "HomDGCat Wiki",
     },
     "Affix": {
         "CH": " | <color style='color:#0066FF;'>妮可少女 玉衡杯数据库 yuhengcup.wiki</color> | <color style='color:#0066FF;'>t.me/homdgcat</color> | <color style='color:#0066FF;'>b站@妮可少女</color>",
@@ -37,14 +32,12 @@ var txt = {
     },
     "ChooseTitle": {
         "CH": "（星穹铁道）",
-        "EN": "(Star Rail)",
-        "RU": "(Star Rail)"
+        "EN": "(Star Rail)"
     },
     "Page": {
         "CH": "<p><b>【切换页面】</b></p>",
         "EN": "<p><b>[ Pages ]</b></p>",
     },
-    "Home_Lang_": "<a class='translate_' href='?lang=CH'><b>中文</b></a> | <a class='translate_' href='?lang=EN'><b>English</b></a> | <a class='translate_' href='?lang=JP'><b>日本語</b></a> | <a class='translate_' href='?lang=KR'><b>한국인</b></a> | <a class='translate_' href='?lang=RU'><b>Русский</b></a>",
     "Home_Lang": "<a class='translate_' href='?lang=CH'><b>中文</b></a> | <a class='translate_' href='?lang=EN'><b>English</b></a> | <a class='translate_' href='?lang=JP'><b>日本語</b></a> | <a class='translate_' href='?lang=KR'><b>한국인</b></a>",
     "Lang": {
         "CH": "<a href='?lang=EN'>Switch to English</a>",
@@ -65,8 +58,8 @@ var txt = {
         "EN": "About Me",
     },
     "About": {
-        "CH": "玉衡杯数据库由<b>妮可少女 HomDGCat</b>建立和维护，旨在为原神/星穹铁道玩家提供最全面准确的游戏数据",
-        "EN": "HomDGCat Wiki (formerly the Yuheng Cup Database) is a GI/HSR database built maintained by <b>HomDGCat</b>"
+        "CH": "玉衡杯数据库由<b>妮可少女 HomDGCat</b>建立和维护，旨在为星穹铁道玩家提供最全面准确的游戏数据",
+        "EN": "HomDGCat Wiki (formerly the Yuheng Cup Database) is a HSR database built and maintained by <b>HomDGCat</b>"
     },
     "About_2": {
         "CH": "联系我<br>↓<br><a href='https://space.bilibili.com/3546567522912510' target='_blank'>(bilibili)</a> <a href='http://t.me/homdgcat'>(Telegram)</a> <a href='https://www.twitter.com/_homdgcat' target='_blank'>(Twitter)</a> <a href='https://www.reddit.com/user/homdgcat2/' target='_blank'>(Reddit)</a>",
@@ -929,57 +922,6 @@ function popLinks(l) {
                 section: [
                     {
                         schedule: {
-                            a: '/keq',
-                            t: {
-                                span: '妮可少女的刻晴足迹',
-                                style: {
-                                    'margin': 'auto',
-                                    'font-weight': 'bold',
-                                },
-                                class: 'panel'
-                            },
-                            class: 'panel'
-                        },
-                        
-                        class: 'hover-shadow panelw',
-                        style: {
-                            width: 'max-content',
-                            'border-color': '#7030A0',
-                        },
-                    },
-                    {
-                        schedule: {
-                            a: '/yhb',
-                            t: {
-                                span: '刻晴生贺：玉衡杯重现',
-                                style: {
-                                    'margin': 'auto',
-                                    'font-weight': 'bold',
-                                },
-                                class: 'panel'
-                            },
-                            class: 'panel'
-                        },
-                        when: show_yhb,
-                        class: 'hover-shadow panelw',
-                        style: {
-                            width: 'max-content',
-                            'border-color': '#CC0000',
-                        },
-                    },
-                ],
-                class: 'menu_GI menu_GI_2',
-                style: {
-                    'margin-bottom': '10px',
-                    'margin-top': '-9px',
-                    'justify-content': 'center'
-                },
-                when: (lang == 'CH')
-            },
-            {
-                section: [
-                    {
-                        schedule: {
                             a: '/sr/boss',
                             t: {
                                 span: (lang == 'CH') ? '怪物解析' : 'Boss Guides',
@@ -1144,7 +1086,6 @@ function popLinks(l) {
             }
         ]
     })
-    $('.menu_GI').hide()
 }
 
 var Loading_Template = {

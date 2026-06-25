@@ -27,13 +27,6 @@ $(function () {
         popLinks(lang)
     })
 
-    var EG = 1
-    var HLG = 1
-    var DEF = 2000
-    var LV = 95
-    //refreshStats()
-    var IS_DMG = 1
-    var cm = {}
     var HIDE_SHOW = 0
 
     var has_2 = 0

@@ -62,22 +62,13 @@ $(function () {
                 EN: 'About Me: HomDGCat'
             },
             {
-                CH: '我是看到朋友玩<color style="color:#FFD780;"><b>刻晴</b></color>入坑原神的；看到刻晴的第一眼我就知道，她是我原神命中注定的单推！我入坑不久后就对游戏数据机制产生了兴趣。最初吸引我的问题是，深境螺旋12层的怪物血量是如何比大世界血量高那么多的？虽然12层的怪物等级是95~100级，比大世界的90级高一些，但这样的等级差距不足以解释巨大的血量差距。这是我研究<color style="color:#FFD780;"><b>原神解包</b></color>的契机。',
-                EN: 'I started playing Genshin Impact after I saw a friend play <color style="color:#FFD780;"><b>Keqing</b></color>. The moment I saw Keqing, I knew she will be my favourite GI character forever! I picked up an interest in game data and mechanics a short while after I started playing. The first question that intrigued me was: Why is the HP of the enemies in Abyss 12 so much higher than overworld HP? F12 enemies are at levels 95~100, and overworld enemies are about level 90. This difference in level is not enough to account for the huge difference in HP. This is how I got into <color style="color:#FFD780;"><b>datamining</b></color>.'
+                CH: '我在星穹铁道开服后就开始研究星穹铁道的<color style="color:#FFD780;"><b>数据机制</b></color>。最初吸引我的问题是，混沌回忆中怪物的血量是如何计算和设置的？这是我研究<color style="color:#FFD780;"><b>星穹铁道数据</b></color>的契机。',
+                EN: 'I started researching <color style="color:#FFD780;"><b>HSR game data and mechanics</b></color> when the game was released. The first question that intrigued me was: How is the HP of the enemies in Memory of Chaos calculated? This is how I got into <color style="color:#FFD780;"><b>datamining</b></color>.'
             },
             {
-                CH: '在 <b>2022</b> 年，我已经学会了很多解包相关的知识，也阅读了很多NGA大佬写的机制解析文章，比如【高等元素论】【角色产球学】【韧性力学】等等。这会儿我自己也进入了NGA，认识了很多NGA的创作者；我自己也在NGA写了不少文章。',
-                EN: 'I started doing datamining since then, and in about 2022 I got interested in stuff about future versions. I started off by making graphs of future Abyss lineups, and then gradually started looking at future enemies and characters.'
-            },
-            {
-                CH: '加入NGA之后，我开始对未来版本的信息做一些研究。最初只是做下版本深渊的怪物阵容图，可能有很多玩家就是因为这个认识我的，那时候我还叫【妮可少年】。后来我就逐渐开始做一些怪物机制，和未来版本的角色技能的研究了。',
-                EN: 'I started looking into datamining HSR when it was still in CBT. I started playing when it was released, and later added the HSR section of HomDGCat Wiki. I played very little HSR at first, until I saw <color style="color:#FFD780;"><b>Yunli</b></color>\'s drip marketing. The moment I saw Yunli, I knew she will be my favourite HSR character forever!'
-            },
-            {
-                CH: '星穹铁道内测的时候，我就开始研究解包星穹铁道了，正式开服后我成为了开服玩家，并且后来给玉衡杯数据库加上了星穹铁道部分。星穹铁道一开始玩得很少，直到我看到了<color style="color:#FFD780;"><b>云璃</b></color>的立绘。看到云璃的第一眼我就知道，她是我在星穹铁道里命中注定的单推！',
-                EN: ''
+                CH: '在研究数据的过程中，我看到了<color style="color:#FFD780;"><b>云璃</b></color>的立绘。看到云璃的第一眼我就知道，她是我在星穹铁道里命中注定的单推！',
+                EN: 'While researching game data, I saw <color style="color:#FFD780;"><b>Yunli</b></color>\'s drip marketing. The moment I saw Yunli, I knew she will be my favourite HSR character forever!'
             }
-            
         ],
         [
             {
@@ -85,16 +76,12 @@ $(function () {
                 EN: 'Wiki\'s History'
             },
             {
-                CH: '「玉衡杯」曾经是围绕刻晴的原神深渊竞速比赛，是原神最早的竞速赛之一。第一期玉衡杯（当时名为刻晴杯）于 <color style="color:#FFD780;"><b>2022</b></color> 年 <color style="color:#FFD780;"><b>4</b></color> 月（2.6版本）举办，距今已超过三年。',
-                EN: 'HomDGCat Wiki was previously called \"Yuheng Cup Database.\" Yuheng Cup was a Keqing-centered Genshin Abyss speedrunning contest. The first Yuheng Cup was held in <color style="color:#FFD780;"><b>April 2022</b></color>, more than 3 years ago.'
+                CH: '玉衡杯数据库最初是为参加比赛选手提供信息的数据库，后来逐渐发展为今天的星穹铁道数据平台。',
+                EN: 'HomDGCat Wiki was originally made for contestants to look up game data. It has gradually grown into the HSR data platform it is today.'
             },
             {
-                CH: '玉衡杯数据库原本是为参加玉衡杯的选手提供信息的数据库，最初只有查询怪物数据和深渊阵容的功能。',
-                EN: 'Yuheng Cup Database was originally made for contestants to look up enemy data. The first edition only had the "Monsters" and "Spiral Abyss" features.'
-            },
-            {
-                CH: '在 <color style="color:#FFD780;"><b>2023</b></color> 年 <color style="color:#FFD780;"><b>9</b></color> 月，我给玉衡杯数据库加上了原神的角色、武器、圣遗物数据，并把玉衡杯数据库独立了出来；在此之后，我又加入了星穹铁道的部分，玉衡杯数据库逐渐发展成了今天的模样。',
-                EN: 'In <color style="color:#FFD780;"><b>September 2023</b></color>, I added the "Characters Weapons Artifacts" feature, and created an independent site for HomDGCat Wiki. Later I added the Honkai Star Rail part, and the Wiki gradually grew to what it is today.'
+                CH: '在 <color style="color:#FFD780;"><b>2023</b></color> 年，我给玉衡杯数据库独立了出来，并加入了星穹铁道的部分，玉衡杯数据库逐渐发展成了今天的模样。',
+                EN: 'In <color style="color:#FFD780;"><b>2023</b></color>, I created an independent site for HomDGCat Wiki and added the Honkai Star Rail part. The Wiki gradually grew to what it is today.'
             }
         ],
         [
@@ -105,14 +92,6 @@ $(function () {
             {
                 CH: '我最喜欢的周本战斗曲是<color style="color:#FFD780;">《蚀形的灾祲》</color>（古斯托特）',
                 EN: 'My favourite Weekly Boss BGM is <color style="color:#FFD780;"><b>Vitas Corrodens Pestis</b></color> (Gosoythoth)'
-            },
-            {
-                CH: '我最喜欢的BOSS战斗曲是<color style="color:#FFD780;">《安魂的协奏曲》</color>（魔像督军）',
-                EN: 'My favourite ordinary Boss BGM is <color style="color:#FFD780;"><b>Requiem Resonantia</b></color> (Legatus Golem)'
-            },
-            {
-                CH: '我最喜欢的地区战斗曲是<color style="color:#FFD780;">《苍银的圣咒》</color>（挪德卡莱）',
-                EN: 'My favourite area combat BGM is <color style="color:#FFD780;"><b>Syntyloitsut of Koitar</b></color> (Nod Krai)'
             },
             {
                 CH: '星穹铁道暂时没什么特别喜欢的音乐...',
@@ -157,31 +136,6 @@ $(function () {
                                     },
                                     {
                                         img: '/images/emote/Yunli/3.png',
-                                        when: window.innerWidth >= 600
-                                    },
-                                    {
-                                        img: '/images/emote/Keqing/1.png'
-                                    },
-                                    {
-                                        img: '/images/emote/Keqing/2.png',
-                                        when: window.innerWidth >= 600
-                                    },
-                                    {
-                                        img: '/images/emote/Keqing/3.png',
-                                        when: window.innerWidth >= 600
-                                    },
-                                    {
-                                        img: '/images/emote/Keqing/6.png'
-                                    },
-                                    {
-                                        img: '/images/emote/Keqing/18.png'
-                                    },
-                                    {
-                                        img: '/images/emote/Keqing/19.png',
-                                        when: window.innerWidth >= 600
-                                    },
-                                    {
-                                        img: '/images/emote/Keqing/20.png',
                                         when: window.innerWidth >= 600
                                     },
                                 ],
@@ -243,15 +197,7 @@ $(function () {
                             {
                                 p: text[1][2][lang],
                                 class: 'desc2'
-                            },
-                            {
-                                p: text[1][3][lang],
-                                class: 'desc2'
-                            },
-                            {
-                                p: text[1][4][lang],
-                                class: 'desc2'
-                            },
+                            }
                         ],
                         class: 'block_0 blk',
                     },
@@ -267,10 +213,6 @@ $(function () {
                             },
                             {
                                 p: text[2][2][lang],
-                                class: 'desc2'
-                            },
-                            {
-                                p: text[2][3][lang],
                                 class: 'desc2'
                             }
                         ],
@@ -289,18 +231,6 @@ $(function () {
                             {
                                 p: text[3][2][lang],
                                 class: 'desc2'
-                            },
-                            {
-                                p: text[3][3][lang],
-                                class: 'desc2'
-                            },
-                            {
-                                p: text[3][4][lang],
-                                class: 'desc2'
-                            },
-                            {
-                                p: text[3][5][lang],
-                                class: 'desc2'
                             }
                         ],
                         class: 'block blk',
@@ -313,14 +243,6 @@ $(function () {
                             },
                             {
                                 p: text[4][1][lang],
-                                class: 'desc2'
-                            },
-                            {
-                                p: text[4][2][lang],
-                                class: 'desc2'
-                            },
-                            {
-                                p: text[4][3][lang],
                                 class: 'desc2'
                             }
                         ],
