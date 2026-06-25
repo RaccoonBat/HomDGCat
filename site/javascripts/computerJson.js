@@ -35,13 +35,13 @@ var computer_ = {
             "RU": "HomDGCat Wiki - Genshin Impact & Honkai Star Rail Wiki By HomDGCat 妮可少女",
         },
         "TITLE": {
-            "CH": "<img src='/homdgcat-res/UI/_logo_2.png' class='logo_img_yhb'>",
-            "EN": "<img src='/homdgcat-res/UI/_logo_3.png' class='logo_img_yhb'>",
+            "CH": "<img src='/UI/_logo_2.png' class='logo_img_yhb'>",
+            "EN": "<img src='/UI/_logo_3.png' class='logo_img_yhb'>",
             "RU": "HomDGCat Wiki",
         },
         "Title": {
-            "CH": "<img src='/homdgcat-res/UI/_logo_2.png' class='logo_img_yhb'>",
-            "EN": "<img src='/homdgcat-res/UI/_logo_3.png' class='logo_img_yhb'>",
+            "CH": "<img src='/UI/_logo_2.png' class='logo_img_yhb'>",
+            "EN": "<img src='/UI/_logo_3.png' class='logo_img_yhb'>",
             "RU": "HomDGCat Wiki",
         },
         "Affix": {
@@ -90,8 +90,8 @@ var computer_ = {
             "RU": "homdgcat.wiki | t.me/homdgcat"
         },
         "ComputerTitle": {
-            "CH": "<img src='/homdgcat-res/UI/_logo_2.png' class='logo_img_yhb'>",
-            "EN": "<img src='/homdgcat-res/UI/_logo_3.png' class='logo_img_yhb'>",
+            "CH": "<img src='/UI/_logo_2.png' class='logo_img_yhb'>",
+            "EN": "<img src='/UI/_logo_3.png' class='logo_img_yhb'>",
             "RU": "HomDGCat Wiki"
         },
         "ComputerTitle_": {
@@ -364,8 +364,8 @@ var computer_ = {
             "RU": "Рассчитать урон"
         },
         "AbyssTitle": {
-            "CH": "<img src='/homdgcat-res/UI/_logo_2.png' class='logo_img_yhb'>",
-            "EN": "<img src='/homdgcat-res/UI/_logo_3.png' class='logo_img_yhb'>",
+            "CH": "<img src='/UI/_logo_2.png' class='logo_img_yhb'>",
+            "EN": "<img src='/UI/_logo_3.png' class='logo_img_yhb'>",
             "RU": "HomDGCat Wiki"
         },
         "AbyssCount": {
@@ -1979,142 +1979,10 @@ var links = {
             "RU": "<b>Main Page</b>"
         },
         {
-            "CH": "<b>原神</b>",
-            "EN": "<b>GI</b>",
-            "RU": "<b>GI</b>"
-        },
-        {
             "CH": "<b>星穹铁道</b>",
             "EN": "<b>HSR</b>",
             "RU": "<b>HSR</b>"
         }
-    ],
-    "GI": [
-        {
-            "Name": {
-                "CH": "怪物",
-                "EN": "Monsters",
-                "RU": "Противники"
-            },
-            "Link": "/gi/monster"
-        },
-        {
-            "Name": {
-                "CH": "角色 武器 圣遗物",
-                "EN": "<color style='font-size:17px;'>Characters Weapons Artifacts</color>",
-                "RU": "<color style='font-size:17px;'>Персонажи Оружие Артефакты</color>"
-            },
-            "Link": "/gi/char"
-        },
-        {
-            "Name": {
-                "CH": "刻晴成绩",
-                "EN": "Keqing Endgame"
-            },
-            "Link": "/gi/keqing",
-        },
-        {
-            "Name": {
-                "CH": "幽境危战",
-                "EN": "Stygian Onslaught"
-            },
-            "Link": "/gi/3boss"
-        },
-        {
-            "Name": {
-                "CH": "深境螺旋",
-                "EN": "Spiral Abyss",
-                "RU": "Витая Бездна"
-            },
-            "Link": "/gi/abyss"
-        },
-        {
-            "Name": {
-                "CH": "幻想真境剧诗",
-                "EN": "Imaginarium Theater",
-                "RU": "Театр Воображариум"
-            },
-            "Link": "/gi/maze"
-        },
-        {
-            "Name": {
-                "CH": "祈愿卡池",
-                "EN": "Gacha Banners"
-            },
-            "Link": "/gi/banner",
-        },
-        {
-            "Name": {
-                "CH": "剧情记录（新新）",
-                "EN": "Quest Logs [NewNew]",
-            },
-            "Link": "/gi/quests",
-            "When": quest_allow,
-        },
-        {
-            "Name": {
-                "CH": "生日日历（新）",
-                "EN": "Birthday Calendar [New]",
-            },
-            "Link": "/gi/birthday",
-        },
-        {
-            "Name": {
-                "CH": "材料 食物 名片 头像",
-                "EN": "<color style='font-size:17px;'>Items Food Namecards Avatars</color>",
-                "RU": "<color style='font-size:17px;'>Материал, Еда, Именные карта</color>"
-            },
-            "Link": "/gi/item"
-        },
-        {
-            "Name": {
-                "CH": "成就",
-                "EN": "Achievements",
-                "RU": "Достижения"
-            },
-            "Link": "/gi/ach"
-        },
-        {
-            "Name": {
-                "CH": "地理志",
-                "EN": "Geography Codex",
-                "RU": "География"
-            },
-            "Link": "/gi/geo"
-        },
-        {
-            "Name": {
-                "CH": "教程",
-                "EN": "Tutorials",
-                "RU": "Обучение"
-            },
-            "Link": "/gi/tut"
-
-        },
-        {
-            "Name": {
-                "CH": "活动",
-                "EN": "Events",
-                "RU": "Событие"
-            },
-            "Link": "/gi/event"
-        },
-        {
-            "Name": {
-                "CH": "加载提示",
-                "EN": "Loading Tips",
-                "RU": "Подсказки на экране загрузки"
-            },
-            "Link": "/gi/load",
-        },
-        {
-            "Name": {
-                "CH": "妮可少女的DIY小屋",
-                "EN": "",
-                "RU": ""
-            },
-            "Link": "/gi/diy",
-        },
     ],
     "SR": [
         {
@@ -2317,25 +2185,6 @@ $('body').on('click', '._menu_', function () {
                         },
                         event: {
                             click: function (d) {
-                                $('.menu_GI').show()
-                                $('.menu_SR').hide()
-                                $(d.sender).addClass('active')
-                                $(d.sender).siblings().removeClass('active')
-                            }
-                        },
-                        class: 'active'
-                    },
-                    {
-                        schedule: {
-                            span: links.Head[2][lang2],
-                            style: {
-                                'font-size': '16px',
-                                'margin': 'auto'
-                            }
-                        },
-                        event: {
-                            click: function (d) {
-                                $('.menu_GI').hide()
                                 $('.menu_SR').show()
                                 $(d.sender).addClass('active')
                                 $(d.sender).siblings().removeClass('active')
@@ -2346,150 +2195,6 @@ $('body').on('click', '._menu_', function () {
                 class: 'menu_CTRL',
                 style: {
                     'margin-bottom': '30px'
-                }
-            },
-            {
-                section: [
-                    {
-                        schedule: {
-                            a: '/gi/boss',
-                            t: {
-                                span: (lang == 'CH') ? '怪物解析' : 'Boss Guides',
-                                style: {
-                                    'margin': 'auto',
-                                    'font-weight': 'bold',
-                                },
-                                class: 'panel'
-                            },
-                            class: 'panel'
-                        },
-                        
-                        class: 'hover-shadow panelw',
-                        style: {
-                            width: 'max-content',
-                        },
-                    },
-                    {
-                        schedule: {
-                            a: '/gi/change',
-                            t: {
-                                span: (lang == 'CH') ? '改动汇总' : 'Track Updates',
-                                style: {
-                                    'margin': 'auto',
-                                    'font-weight': 'bold',
-                                },
-                                class: 'panel'
-                            },
-                            class: 'panel'
-                        },
-                        
-                        class: 'hover-shadow panelw',
-                        style: {
-                            width: 'max-content',
-                        },
-                    },
-                    {
-                        schedule: {
-                            a: '/gi/future',
-                            t: {
-                                span: (lang == 'CH') ? '未来情报' : 'Future Info',
-                                style: {
-                                    'margin': 'auto',
-                                    'font-weight': 'bold',
-                                },
-                                class: 'panel'
-                            },
-                            class: 'panel'
-                        },
-                        
-                        class: 'hover-shadow panelw',
-                        style: {
-                            width: 'max-content',
-                        },
-                    },
-                    {
-                        schedule: {
-                            a: '/gi/formulae',
-                            t: {
-                                span: '公式大全',
-                                style: {
-                                    'margin': 'auto',
-                                    'font-weight': 'bold',
-                                },
-                                class: 'panel'
-                            },
-                            class: 'panel'
-                        },
-                        when: lang == 'CH',
-                        class: 'hover-shadow panelw',
-                        style: {
-                            width: 'max-content',
-                        },
-                    },
-                    {
-                        schedule: {
-                            a: '/gi/readable',
-                            t: {
-                                span: (lang == 'CH') ? '阅读物搜索' : 'Readables Search',
-                                style: {
-                                    'margin': 'auto',
-                                    'font-weight': 'bold',
-                                },
-                                class: 'panel'
-                            },
-                            class: 'panel'
-                        },
-                        
-                        class: 'hover-shadow panelw',
-                        style: {
-                            width: 'max-content',
-                        },
-                    },
-                    {
-                        schedule: {
-                            a: '/gi/search',
-                            t: {
-                                span: (lang == 'CH') ? '文本+剧情搜索' : 'Text+Dialogue Search',
-                                style: {
-                                    'margin': 'auto',
-                                    'font-weight': 'bold',
-                                },
-                                class: 'panel'
-                            },
-                            class: 'panel'
-                        },
-                        
-                        class: 'hover-shadow panelw',
-                        style: {
-                            width: 'max-content',
-                        },
-                    },
-                    {
-                        schedule: {
-                            a: '/gi/quests',
-                            t: {
-                                span: (lang == 'CH') ? '剧情记录' : 'Quest Logs',
-                                style: {
-                                    'margin': 'auto',
-                                    'font-weight': 'bold',
-                                },
-                                class: 'panel'
-                            },
-                            class: 'panel'
-                        },
-                        when: quest_allow,
-                        class: 'hover-shadow panelw',
-                        style: {
-                            width: 'max-content',
-                            border: '2px solid #7030A0',
-                        },
-                    },
-                ],
-                class: 'menu_GI menu_GI_2',
-                style: {
-                    'margin-bottom': '10px',
-                    'margin-top': '-13px',
-                    'justify-content': 'center'
                 }
             },
             {
@@ -2689,30 +2394,6 @@ $('body').on('click', '._menu_', function () {
             },
             {
                 section: function (g) {
-                    links.GI.forEach(function (j) {
-                        if (!j.Name[lang2]) return
-                        $(g.container).render({
-                            template: {
-                                schedule: {
-                                    a: j.Link,
-                                    t: {
-                                        span: j.Name[lang2],
-                                        style: {
-                                            'font-size': '19px',
-                                            'margin': 'auto'
-                                        }
-                                    }
-                                },
-                                class: 'hover-shadow',
-                                when: (j.When == undefined) ? 1 : j.When
-                            }
-                        })
-                    })
-                },
-                class: 'menu_GI'
-            },
-            {
-                section: function (g) {
                     links.SR.forEach(function (j) {
                         $(g.container).render({
                             template: {
@@ -2841,7 +2522,7 @@ if (Date.now() > Date.parse('2026-01-05T18:00:00+08:00')) {
 } else {
     $('h3').render({
         div: {
-            img: '/homdgcat-res/UI/69551bacfa9bb3fbe7cc7194-min.png',
+            img: '/UI/69551bacfa9bb3fbe7cc7194-min.png',
             class: 'newyear_img'
         },
         class: 'newyear_wrap'

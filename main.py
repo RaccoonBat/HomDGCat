@@ -13,8 +13,8 @@ HomDGCat Wiki 完整镜像工具
     python main.py status                 # 查看下载进度
 
 文件列表 filelist.txt 包含 15,357 个文件路径，涵盖:
-  - 页面 HTML (index.html, about, sr/char/*, gi/char/*)
-  - 多语言数据 JS (data/{CH,EN,JP,KR,RU}/*, gi/{CH,EN,JP,KR,RU}/*)
+  - 页面 HTML (index.html, about, sr/char/*)
+  - 多语言数据 JS (data/{CH,EN,JP,KR,RU}/*)
   - 图片资源 (images/*)
   - TextMap 数据 (TextMap/*.js)
   - 静态资源 (css, js, fonts, audio)

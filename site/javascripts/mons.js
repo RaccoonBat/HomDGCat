@@ -1227,25 +1227,6 @@ $(function () {
                     ],
                     class: 'DMG_Tut'
                 },
-                {
-                    div: [
-                        {
-                            p: txt.MonsterDEF[1][lang],
-                            style: {
-                                width: '100%',
-                                'text-align': 'center'
-                            }
-                        },
-                        {
-                            img: imgpre + 'images/Misc/DEF_GI.png',
-                            style: {
-                                width: '100%',
-                                'max-width': '500px'
-                            }
-                        }
-                    ],
-                    class: 'DMG_Tut'
-                }
             ]
         })
     }

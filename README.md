@@ -1,6 +1,6 @@
 # HomDGCat Wiki Mirror
 
-[homdgcat.wiki](https://homdgcat.wiki) 的完整离线镜像，涵盖原神和崩坏：星穹铁道的角色、武器、圣遗物/遗器等数据。
+[homdgcat.wiki](https://homdgcat.wiki) 的完整离线镜像，涵盖崩坏：星穹铁道的角色、光锥、遗器等数据。
 
 ## 内容
 

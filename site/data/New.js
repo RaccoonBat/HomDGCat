@@ -26,17 +26,9 @@ NEW_SR = [
     }
 ]//SR
 
-var gi_ch = []
 var sr_ch = []
-var gi_en = []
 var sr_en = []
 
-for (const i of NEW_GI) {
-    if (i.Elem) {
-        gi_ch.push(i.Name.CH)
-        gi_en.push(i.Name.EN)
-    }
-}
 for (const i of NEW_SR) {
     if (i.Elem) {
         sr_ch.push(i.Name.CH)
@@ -44,4 +36,4 @@ for (const i of NEW_SR) {
     }
 }
 
-document.querySelector('meta[name="description"]').setAttribute("content", `Genshin ${VER_GI.substring(0, 3)}: ${gi_en.join(', ')} | Star Rail ${VER_SR.substring(0, 3)}: ${sr_en.join(', ')} | 原神 ${VER_GI.substring(0, 3)}: ${gi_ch.join('、')} | 星穹铁道 ${VER_SR.substring(0, 3)}: ${sr_ch.join('、')}`);
+document.querySelector('meta[name="description"]').setAttribute("content", `Star Rail ${VER_SR.substring(0, 3)}: ${sr_en.join(', ')} | 星穹铁道 ${VER_SR.substring(0, 3)}: ${sr_ch.join('、')}`);

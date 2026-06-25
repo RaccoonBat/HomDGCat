@@ -18,7 +18,7 @@ $(function() {
         }
     });
     var AVAILABLE_LANG = ["CH", "EN", "RU", "JP", "KR", "DE", "FR", "SP", "PT"]
-    var is_ru = 0
+
     var param_lang = $('#LANG').val().toUpperCase()
     if (param_lang == "ES") param_lang = "SP"
     var store_lang = param_lang
@@ -160,7 +160,6 @@ $(function() {
         var data_list = []
         var cumulated_stamp = start_timestamp
         for (const ver_data of time_list) {
-            var custom_offset = 0
             if (ver_data.V != '4.0') {
                 data_list.push({
                     stamp: cumulated_stamp + offset[0] * 3600000,
@@ -232,8 +231,6 @@ $(function() {
     });
 
     var cur_select = 1
-    var l = didyouknow.length
-    var r = -1
     var GAME = default_game
     var GAME_DATE = $("#GAME").val()
     
@@ -265,19 +262,6 @@ $(function() {
                     {
                         schedule: txt.Home_Sections[0][lang],
                         a: {
-                            'data-id': 1,
-                            'class': GAME == 'GI' ? 'active' : ''
-                        },
-                        style: {
-                            'display': 'flex',
-                            'justify-content': 'center',
-                            'flex-direction': 'column',
-                            'line-height': '1.7'
-                        }
-                    },
-                    {
-                        schedule: txt.Home_Sections[1][lang],
-                        a: {
                             'data-id': 2,
                             'class': GAME == 'SR' ? 'active' : ''
                         },
@@ -289,7 +273,7 @@ $(function() {
                         }
                     },
                     {
-                        schedule: txt.Home_Sections[2][lang],
+                        schedule: txt.Home_Sections[1][lang],
                         a: {
                             'data-id': 3
                         },
@@ -324,7 +308,7 @@ $(function() {
                             },
                             {
                                 div: {
-                                    img: '/homdgcat-res/UI/birthday-cake2.png'
+                                    img: '/UI/birthday-cake2.png'
                                 },
                                 class: 'cntd_emote_small',
                                 when: anniversary
@@ -365,131 +349,6 @@ $(function() {
             },
             {
                 div: [
-                    {
-                        section: [
-                            {
-                                schedule: {
-                                    a: '/gi/boss',
-                                    t: {
-                                        span: (lang == 'CH') ? '怪物解析' : 'Boss Guides',
-                                        style: {
-                                            'margin': 'auto',
-                                            'font-weight': 'bold',
-                                        }
-                                    }
-                                },
-                                class: 'hover-shadow panel',
-                                style: {
-                                    width: 'max-content',
-                                    border: '2px solid #f29e38',
-                                }
-                            },
-                            {
-                                schedule: {
-                                    a: '/gi/change',
-                                    t: {
-                                        span: (lang == 'CH') ? '改动汇总' : 'Track Updates',
-                                        style: {
-                                            'margin': 'auto',
-                                            'font-weight': 'bold',
-                                        }
-                                    }
-                                },
-                                class: 'hover-shadow panel',
-                                style: {
-                                    width: 'max-content',
-                                    border: '2px solid #f29e38',
-                                }
-                            },
-                            {
-                                schedule: {
-                                    a: '/gi/future',
-                                    t: {
-                                        span: (lang == 'CH') ? '未来情报' : 'Future Info',
-                                        style: {
-                                            'margin': 'auto',
-                                            'font-weight': 'bold',
-                                        }
-                                    }
-                                },
-                                class: 'hover-shadow panel',
-                                style: {
-                                    width: 'max-content',
-                                    border: '2px solid #f29e38',
-                                }
-                            },
-                            {
-                                schedule: {
-                                    a: '/gi/formulae',
-                                    t: {
-                                        span: '公式大全',
-                                        style: {
-                                            'margin': 'auto',
-                                            'font-weight': 'bold',
-                                        }
-                                    }
-                                },
-                                when: lang == 'CH',
-                                class: 'hover-shadow panel',
-                                style: {
-                                    width: 'max-content',
-                                    border: '2px solid #f29e38',
-                                }
-                            },
-                            {
-                                schedule: {
-                                    a: '/gi/readable',
-                                    t: {
-                                        span: (lang == 'CH') ? '阅读物搜索' : 'Readables Search',
-                                        style: {
-                                            'margin': 'auto',
-                                            'font-weight': 'bold',
-                                        }
-                                    }
-                                },
-                                class: 'hover-shadow panel',
-                                style: {
-                                    width: 'max-content',
-                                    border: '2px solid #f29e38',
-                                }
-                            },
-                            {
-                                schedule: {
-                                    a: '/gi/search',
-                                    t: {
-                                        span: (lang == 'CH') ? '文本+剧情搜索' : 'Text+Dialogue Search',
-                                        style: {
-                                            'margin': 'auto',
-                                            'font-weight': 'bold',
-                                        }
-                                    }
-                                },
-                                class: 'hover-shadow panel',
-                                style: {
-                                    width: 'max-content',
-                                    border: '2px solid #f29e38',
-                                }
-                            },
-                            {
-                                schedule: {
-                                    a: '/gi/quests',
-                                    t: {
-                                        span: (lang == 'CH') ? '剧情记录' : 'Quest Logs',
-                                        style: {
-                                            'margin': 'auto',
-                                            'font-weight': 'bold',
-                                        }
-                                    }
-                                },
-                                when: quest_allow,
-                                class: 'hover-shadow panel',
-                                style: {
-                                    width: 'max-content',
-                                    border: '2px solid #7030A0',
-                                }
-                            },
-                        ]
-                    },
                     {
                         section: [
                             {
@@ -665,82 +524,6 @@ $(function() {
                                     when: !April_1st
                                 },
                                 {
-                                    img: '/homdgcat-res/Avatar/April1stOthers.png',
-                                    a: {
-                                        loading: lazy
-                                    },
-                                    when: April_1st
-                                }
-                            ],
-                            class: 'new_image_wrapper_1'
-                        },
-                        {
-                            div: [
-                                {
-                                    img: `/homdgcat-res/UI/[[Elem]].png`,
-                                    class: 'attr_img_1',
-                                    a: {
-                                        loading: lazy
-                                    },
-                                    when: function (p) {
-                                        return p.data.Elem && p.data.Elem.length && (p.data.Elem != 'None')
-                                    }
-                                },
-                                {
-                                    img: `/homdgcat-res/AvatarSkill/[[Type]].png`,
-                                    class: 'attr_img_1',
-                                    a: {
-                                        loading: lazy
-                                    },
-                                    when: function (p) {
-                                        return p.data.Type.length
-                                    }
-                                },
-                                {
-                                    img: '/images/GCG_UI/3004.png',
-                                    class: 'attr_img_1',
-                                    a: {
-                                        loading: lazy
-                                    },
-                                    when: function (p) {
-                                        return !p.data.Type.length
-                                    }
-                                }
-                            ],
-                            class: 'new_attr'
-                        },
-                        {
-                            p: `[[Name/${lang3}]]${meow}`,
-                            class: 'new_text',
-                            style: {
-                                color: function (d) {
-                                    return (d.data.Rarity == 5) ? '#df903b' : '#ffacff'
-                                }
-                            }
-                        }
-                    ],
-                    class: 'new_block hover-shadow',
-                    data: NEW_GI,
-                    attr: {
-                        target: '_blank'
-                    }
-                },
-                class: 'n1'
-            },
-            {
-                section: {
-                    a: `[[Link]]`,
-                    t: [
-                        {
-                            div: [
-                                {
-                                    img: `[[Icon]]`,
-                                    a: {
-                                        loading: lazy
-                                    },
-                                    when: !April_1st
-                                },
-                                {
                                     img: '/images/avataricon/April1stOthers.png',
                                     a: {
                                         loading: lazy
@@ -797,47 +580,6 @@ $(function() {
                     {
                         div: [
                             {
-                                p: (lang == 'CH') ? '原神' : 'Genshin Impact',
-                                class: 'dir_head',
-                                style: {
-                                    margin: '15px 5px 0'
-                                }
-                            },
-                            {
-                                p: '',
-                                class: 'c1_ dir_subhead'
-                            },
-                            {
-                                div: [
-                                    {
-                                        div: '',
-                                        class: 'age_sub_1 table_gi_1'
-                                    },
-                                    {
-                                        div: '',
-                                        class: 'age_sub_2 table_gi_2'
-                                    },
-                                    {
-                                        div: {
-                                            img: '/homdgcat-res/UI/birthday-cake2.png'
-                                        },
-                                        class: 'cntd_emote_small',
-                                        when: anniversary
-                                    },
-                                ],
-                                class: 'age'
-                            },
-                            {
-                                table: [],
-                                class: 'ctable table_gi'
-                            }
-                        ],
-                        class: 'futd_gi futds',
-                        when: GAME_DATE != "SR_DATE"
-                    },
-                    {
-                        div: [
-                            {
                                 p: (lang == 'CH') ? '星穹铁道' : 'Star Rail',
                                 class: 'dir_head',
                                 style: {
@@ -877,11 +619,9 @@ $(function() {
     })
 
     // Used to be -41 (18:00 on Monday); now it's 127 (18:00 on the next Monday)
-    start_fntd(GI_Stamp, GI_Times, '.table_gi', [7, 127, -279], 1600135200000, '/images/emote/Keqing/1.png', (lang == 'CH') ? '刻晴' : 'Keqing') 
     start_fntd(SR_Stamp, SR_Times, '.table_sr', [-25, -359, -279.5], 1722394800000, '/images/emote/Yunli/1.png', (lang == 'CH') ? '云璃' : 'Yunli')
     start_cntd()
 
-    if (GAME == 'GI') renderGI()
     if (GAME == 'SR') renderSR()
     if (GAME_DATE) {
         renderAbout()
@@ -890,44 +630,6 @@ $(function() {
     }
 
     $('body').addClass(bg_name)
-
-    function renderGI() {
-        $('.c2').hide()
-        $('.c1').show()
-        $('.d2').hide()
-        $('.d1').show()
-        $('.n2').hide()
-        $('.n1').show()
-        $('.futd').hide()
-        $('.below').css('background-color', '')
-        $('.below').show().empty()
-        $('.below').render({
-            template: {
-                div : function (d) {
-                    for (const item of GI) {
-                        if (!item.Title[lang2]) return
-                        if ((item.when != undefined) && !item.when) continue
-                        $(d.container).render({
-                            a: item.Href[lang],
-                            t: {
-                                div: {
-                                    span: item.Title[lang2],
-                                    style: {
-                                        color: item.emphasize ? '#FFD780' : ''
-                                    }
-                                },
-                                class: 'dir_head'
-                            },
-                            class: 'dir hover-shadow',
-                        })
-                    }
-                },  
-                class: 'dir_wrap'
-            }
-        })
-        var DATE = new Date()
-        document.cookie = 'game=GI;expires=' + new Date(DATE.getTime() + 8640000000).toUTCString() + ';path=/'
-    }
 
     function renderSR() {
         $('.c1').hide()
@@ -952,15 +654,6 @@ $(function() {
                             },
                             class: 'dir_head'
                         },
-                        /*{
-                            div: {
-                                span: `[[Link/${lang}]]`,
-                            },
-                            class: 'dir_link',
-                            when: function (k) {
-                                return k.data.Link
-                            }
-                        }*/
                     ],
                     class: 'dir hover-shadow',
                     data: SR
@@ -982,7 +675,6 @@ $(function() {
         $('.futd').show()
         $('.below').css('background-color', 'transparent')
         $('.below').hide()
-        console.log("FINISH")
     }
 
     $('body').on('click', '.home_select schedule', function () {
@@ -992,10 +684,6 @@ $(function() {
         $(this).addClass('active').siblings('schedule').removeClass('active');
         cur_select = $(this).attr('data-id')
         switch (cur_select) {
-            default:
-                renderGI();
-                GAME = 'GI'
-                break;
             case '2':
                 renderSR();
                 GAME = 'SR'

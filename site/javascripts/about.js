@@ -40,8 +40,8 @@ $(function () {
             EN: 'Apart from official data, there is also a lot of stuff written by me. For example characters\' <color style="color:#FFD780;">advanced data</color> (HomDGCat\'s Notes) and <color style="color:#FFD780;">guides on the mechanics</color> of new enemies (Boss Guides).'
         },
         {
-            CH: '玉衡杯数据库会在第一时间更新最新的数据；原神每星期更新数据的时候，在我这里一般是凌晨五点，但我也会及时进行更新',
-            EN: 'HomDGCat Wiki updates data as soon as the game updates are out. Where I live now, it is usually 5 AM in the morning when Genshin Impact updates data every week, but I still process these updates as soon as possible.'
+            CH: '玉衡杯数据库会在第一时间更新最新的数据',
+            EN: 'HomDGCat Wiki updates data as soon as the game updates are out. '
         },
     ]
 

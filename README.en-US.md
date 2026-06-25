@@ -89,7 +89,6 @@ filelist.txt         # Complete file list (15,357 entries)
 site/                # Site files directory
   index/             # Homepage
   sr/char/           # Star Rail character pages
-  gi/char/           # Genshin character pages
   data/{CH,EN,...}/  # Star Rail multi-language data
   images/            # Star Rail image assets
   TextMap/           # TextMap localization data
