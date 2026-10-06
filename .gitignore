@@ -1,0 +1,7 @@
+# 工具缓存：下载的官方源文件、H 分配表、ledger、备份
+tools/cache/
+
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
