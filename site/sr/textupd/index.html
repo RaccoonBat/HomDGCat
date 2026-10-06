@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="zh-CN" prefix="og: http://ogp.me/ns#">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="崩坏星穹铁道 文本增量更新 By HomDGCat Mirror" />
+    <title>崩铁文本增量更新</title>
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+    <link rel="stylesheet" href="/stylesheets/text_sr.css" />
+    <style>
+      #tu-summary { margin: 12px 0; line-height: 1.8; }
+      #tu-controls { margin: 12px 0; display: flex; flex-wrap: wrap; gap: 8px; }
+      #tu-controls input[type="search"] { flex: 1 1 260px; padding: 6px 8px; }
+      #tu-controls select { padding: 6px 8px; }
+      .tu-item { border-bottom: 1px solid #ddd; padding: 8px 0; }
+      .tu-meta { font-size: 12px; opacity: 0.65; }
+      .tu-zh { margin: 2px 0; }
+      .tu-en { margin: 2px 0; opacity: 0.75; }
+      .tu-badge {
+        display: inline-block;
+        font-size: 11px;
+        padding: 1px 6px;
+        border: 1px solid #999;
+        border-radius: 8px;
+        margin-right: 6px;
+      }
+      #tu-pager { margin: 16px 0; display: flex; align-items: center; gap: 12px; }
+      #tu-empty { padding: 24px 0; opacity: 0.7; }
+    </style>
+  </head>
+  <body>
+    <h1>崩铁文本增量更新</h1>
+    <div id="tu-summary">加载中…</div>
+
+    <div id="tu-controls">
+      <input id="tu-q" type="search" placeholder="搜索中文 / 英文" />
+      <select id="tu-kind">
+        <option value="all">全部类型</option>
+        <option value="textmap">文本</option>
+        <option value="talk">对话</option>
+      </select>
+      <select id="tu-version">
+        <option value="all">全部版本</option>
+      </select>
+    </div>
+
+    <div id="tu-results"></div>
+    <div id="tu-empty" hidden>没有匹配的条目。</div>
+
+    <div id="tu-pager">
+      <button id="tu-prev" type="button">上一页</button>
+      <span id="tu-page"></span>
+      <button id="tu-next" type="button">下一页</button>
+    </div>
+
+    <script src="viewer.js"></script>
+  </body>
+</html>
