@@ -28,7 +28,17 @@ SOURCE_FILES: dict[str, str] = {
     "TextMapCHS.json": "TextMap/TextMapCHS.json",
     "TextMapEN.json": "TextMap/TextMapEN.json",
     "TalkSentenceConfig.json": "ExcelOutput/TalkSentenceConfig.json",
+    "BookSeriesWorld.json": "ExcelOutput/BookSeriesWorld.json",
+    "BookSeriesConfig.json": "ExcelOutput/BookSeriesConfig.json",
+    "LocalbookConfig.json": "ExcelOutput/LocalbookConfig.json",
 }
+
+#: 文本层（build）需要的源文件
+TEXT_SOURCE_FILES = ("TextMapCHS.json", "TextMapEN.json", "TalkSentenceConfig.json")
+
+#: 书页层（book）需要的源文件
+BOOK_SOURCE_FILES = ("TextMapCHS.json", "TextMapEN.json", "BookSeriesWorld.json",
+                     "BookSeriesConfig.json", "LocalbookConfig.json")
 
 _VERSION_RE = re.compile(r"OSPRODWin(\d+\.\d+\.\d+)")
 _USER_AGENT = "HomDGCat-sr-text-update/1.0"

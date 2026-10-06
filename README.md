@@ -47,10 +47,13 @@ python tools/sr_update.py fetch
 # 2. 查看现状与已记录的增量
 python tools/sr_update.py status
 
-# 3. 把差集追加进 site/TextMap/
+# 3. 把差集追加进 site/TextMap/（文本 + 对话）
 python tools/sr_update.py build
 
-# 4. 生成增量展示页
+# 4. 重新生成阅读物 SR_Book_*.js
+python tools/sr_update.py book
+
+# 5. 生成增量展示页
 python tools/sr_update.py report
 ```
 
@@ -65,10 +68,14 @@ python tools/sr_update.py report
 | `TextMap/TextMapCHS.json` | 中文主文本表 |
 | `TextMap/TextMapEN.json` | 英文主文本表 |
 | `ExcelOutput/TalkSentenceConfig.json` | 剧情对话索引 |
+| `ExcelOutput/BookSeriesWorld.json` | 阅读物：世界/系列列表 |
+| `ExcelOutput/BookSeriesConfig.json` | 阅读物：书系列名称与描述 |
+| `ExcelOutput/LocalbookConfig.json` | 阅读物：每本书的正文 |
 
 ### 注意事项
 
 - **`build` 只追加，不改动任何已有内容**，重复运行不会产生二次写入（差集为空时一个字节都不写）。
+- **`book` 是整文件重新生成，不是追加** —— 官方的书系列顺序与现有文件不同，逐条比对的成本高于直接重建。想先看差异用 `python tools/sr_update.py book --dry-run`。
 - 写入前会在 `tools/cache/backup/<SHA>/` 留备份。不满意可回滚：
   `git checkout -- site/TextMap/`
 - **`H` 字段由本地生成**，与 homdgcat.wiki 官方站点的 hash 搜索不一致。官方 `H` 是 32 位的内部 ID，实测无法从官方 64 位 xxhash 复现，所以新条目按 `xxh32(hash64)` 生成并记录在 `tools/cache/h_map.json`，保证可复现。

@@ -4,7 +4,8 @@
 用法:
     python tools/sr_update.py fetch     # 下载官方源文件到 tools/cache/
     python tools/sr_update.py status    # 报告现状，不写任何文件
-    python tools/sr_update.py build     # 把差集追加进 site/TextMap/
+    python tools/sr_update.py build     # 把差集追加进 site/TextMap/（文本+对话）
+    python tools/sr_update.py book      # 重新生成 SR_Book_*.js（阅读物）
     python tools/sr_update.py report    # 生成 site/sr/textupd/ 展示页
 
 只有 fetch 需要联网；其余子命令可离线反复运行。
@@ -12,6 +13,8 @@
 
 import argparse
 import json
+import os
+import shutil
 import sys
 from pathlib import Path
 
@@ -27,6 +30,12 @@ for _stream in (sys.stdout, sys.stderr):
         pass
 
 from srtext.append import append_entries
+from srtext.book import (
+    build_books,
+    build_series,
+    load_json,
+    render_book_js,
+)
 from srtext.convert import (
     TALK_FIELD_ORDER,
     TEXTMAP_FIELD_ORDER,
@@ -52,6 +61,9 @@ TEXTMAP_DIR = Path("site") / "TextMap"
 SR_JSON = TEXTMAP_DIR / "SR.json"
 TALK_CH = TEXTMAP_DIR / "SR_Talk_CH.json"
 TALK_EN = TEXTMAP_DIR / "SR_Talk_EN.json"
+
+#: TextMap 下的文件统一用 CRLF
+NEWLINE = "\r\n"
 
 #: 新增量超过现有条目该比例时，要求 --yes 确认
 ANOMALY_RATIO = 0.30
@@ -95,7 +107,13 @@ def cmd_status(args) -> int:
     else:
         print("  缓存:       无（请先运行 fetch）")
 
-    for label, rel in (("SR.json", SR_JSON), ("SR_Talk_CH.json", TALK_CH), ("SR_Talk_EN.json", TALK_EN)):
+    for label, rel in (
+        ("SR.json", SR_JSON),
+        ("SR_Talk_CH.json", TALK_CH),
+        ("SR_Talk_EN.json", TALK_EN),
+        ("SR_Book_CH.js", TEXTMAP_DIR / "SR_Book_CH.js"),
+        ("SR_Book_EN.js", TEXTMAP_DIR / "SR_Book_EN.js"),
+    ):
         target = root / rel
         if target.exists():
             size = target.stat().st_size
@@ -203,6 +221,78 @@ def cmd_build(args) -> int:
     return 0
 
 
+def cmd_book(args) -> int:
+    """重新生成 SR_Book_*.js。
+
+    书页层是整文件重建而非追加——官方的书系列顺序与现有文件不同，
+    逐条比对的成本高于直接重建。
+    """
+    root = Path(args.root)
+    cache = Cache(args.cache)
+    manifest = cache.load_manifest()
+    if not manifest:
+        print("  缓存为空，请先运行 fetch。", file=sys.stderr)
+        return 1
+
+    needed = (
+        "TextMapCHS.json",
+        "TextMapEN.json",
+        "BookSeriesWorld.json",
+        "BookSeriesConfig.json",
+        "LocalbookConfig.json",
+    )
+    for name in needed:
+        if not cache.path_for(name).exists():
+            print(f"  缓存缺少 {name}，请重新运行 fetch。", file=sys.stderr)
+            return 1
+
+    print("  载入源数据…")
+    world = load_json(cache.path_for("BookSeriesWorld.json"))
+    series_config = load_json(cache.path_for("BookSeriesConfig.json"))
+    localbook = load_json(cache.path_for("LocalbookConfig.json"))
+
+    backup_dir = cache.root / "backup" / str(manifest.get("sha", "unknown"))[:12]
+    backup_dir.mkdir(parents=True, exist_ok=True)
+
+    for lang, textmap_name, target_name in (
+        ("CH", "TextMapCHS.json", "SR_Book_CH.js"),
+        ("EN", "TextMapEN.json", "SR_Book_EN.js"),
+    ):
+        textmap = load_json(cache.path_for(textmap_name))
+        series = build_series(world, textmap)
+        books = build_books(series_config, localbook, textmap)
+        content = render_book_js(series, books, NEWLINE)
+
+        target = root / TEXTMAP_DIR / target_name
+        if not target.exists():
+            print(f"  目标文件不存在: {target}", file=sys.stderr)
+            return 1
+
+        # 用 read_bytes + decode 而非 read_text：后者会把 CRLF 归一成 LF，
+        # 导致下面按 NEWLINE 分割失败。
+        old_text = target.read_bytes().decode("utf-8")
+        old_series = json.loads(
+            old_text.split("var _series = ")[1].split(NEWLINE + NEWLINE + "var _books = ")[0].rstrip()
+        )
+        old_books = json.loads(old_text.split("var _books = ")[1].rstrip().rstrip(";"))
+        print(f"  {lang}: 书系列 {len(old_series)} -> {len(series)} 条，"
+              f"书籍 {len(old_books)} -> {len(books)} 条")
+
+        if args.dry_run:
+            continue
+
+        shutil.copy2(target, backup_dir / target_name)
+        temp_path = target.with_name(target.name + ".tmp")
+        temp_path.write_text(content, encoding="utf-8", newline="")
+        os.replace(temp_path, target)
+
+    if args.dry_run:
+        print("  --dry-run：未写入任何文件。")
+    else:
+        print(f"  已写入。备份位于 {backup_dir}")
+    return 0
+
+
 def cmd_report(args) -> int:
     root = Path(args.root)
     cache = Cache(args.cache)
@@ -261,6 +351,9 @@ def build_parser() -> argparse.ArgumentParser:
     build_parser_ = subparsers.add_parser("build", help="把差集追加进 site/TextMap/")
     build_parser_.add_argument("--yes", action="store_true", help="跳过新增量异常确认")
 
+    book_parser = subparsers.add_parser("book", help="重新生成 SR_Book_*.js（阅读物）")
+    book_parser.add_argument("--dry-run", action="store_true", help="只报告，不写文件")
+
     subparsers.add_parser("report", help="生成展示页")
     return parser
 
@@ -271,6 +364,7 @@ def main(argv=None) -> int:
         "fetch": cmd_fetch,
         "status": cmd_status,
         "build": cmd_build,
+        "book": cmd_book,
         "report": cmd_report,
     }
     return handlers[args.command](args)

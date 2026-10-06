@@ -12,10 +12,13 @@
 ```bash
 python tools/sr_update.py fetch     # 下载官方源文件到 tools/cache/（需梯子，约 150 MB）
 python tools/sr_update.py status    # 查看现状，不写任何文件
-python tools/sr_update.py build     # 把差集追加进 site/TextMap/
+python tools/sr_update.py build     # 把差集追加进 site/TextMap/（文本 + 对话）
+python tools/sr_update.py book      # 重新生成 SR_Book_*.js（阅读物）
 python tools/sr_update.py report    # 生成 site/sr/textupd/ 展示页
 python main.py serve                # 然后访问 http://localhost:9000/sr/textupd/
 ```
+
+浏览新内容：`/sr/textupd/`（增量专用页）、`/sr/search/`（文本+剧情搜索，读 SR.json 与 SR_Talk）、`/sr/readable/`（阅读物）。
 
 只有 `fetch` 需要联网。`build` / `report` / `status` 读缓存即可离线运行。
 
@@ -54,12 +57,13 @@ python main.py serve                # 然后访问 http://localhost:9000/sr/text
 
 ```
 tools/
-  sr_update.py      CLI 四子命令
+  sr_update.py      CLI 五子命令
   srtext/
     source.py       下载 · 缓存 · sha256 · schema 探测
     hashes.py       xxh32 实现 + H 分配器
     convert.py      文本层 + 对话层转换
     append.py       风格探测 · 条目渲染 · 原子追加
+    book.py         阅读物层：递归 JS 渲染 + 整文件重新生成
     report.py       运行台账 + 增量数据
   cache/            下载缓存 · h_map · ledger · 备份（gitignore）
 site/sr/textupd/
@@ -142,16 +146,30 @@ for name in ('SR.json','SR_Talk_CH.json','SR_Talk_EN.json'):
 git checkout -- site/TextMap/
 ```
 
+## 书页层（`SR_Book_*.js`）
+
+数据源是 `ExcelOutput/LocalbookConfig.json`（1121 条），这是之前没找到的那一环：
+
+```
+BookSeriesWorld.json   -> _series（世界列表，6 条）
+BookSeriesConfig.json  -> _books 的 Name / Desc / World（828 条）
+LocalbookConfig.json   -> 每本书的正文（按 BookSeriesID 归集）
+BookContent.Hash       -> TextMapCHS/EN 取正文（1121/1121 全部命中）
+```
+
+**与文本层不同，书页层是整文件重新生成而非追加** —— 官方的书系列顺序与现有文件不同（例如现有 `_books[0]` 是 World 4 的「梦的谢幕礼」，官方 `[0]` 是 World 2 的「花语手册」），逐条比对的成本高于直接重建。想先看差异用 `--dry-run`。
+
+两个实现要点：
+
+1. **TextMap 里的换行是字面的两字符 `\n`（反斜杠 + n），不是真换行。** 用 Python 的 `'\n'` 去 `replace` 会静默匹配不到，什么都没做。HomDGCat 的转换是把这个两字符序列换成 `<br>`。这个坑一开始就踩了，表现为只有 3/613 条能匹配上。
+
+2. **JS 缩进是嵌套的**：数组元素 4 空格、对象字段 8 空格、内层 `Books` 数组 12/16 空格。`json.dumps(indent=4)` 做不出来，需要递归渲染器。渲染器已用现有文件的全部 613 条做逐字节往返验证 —— 重建输出与原文件完全一致（CH 911,165 字符 / EN 2,644,610 字符），格式因此得到证明。
+
+当前覆盖：World 1–5 与官方原始数量一致，**World 6 `二相乐园` 的 215 个书系列是全新内容**。
+
+验证过：中英各 828 条、6 个系列、CRLF 保持、无空书名无空正文；`/sr/readable/` 页面加载的正是这两个文件（`readable_sr.js:33`）。
+
 ## 未完成项
-
-### 书页层（`SR_Book_*.js`）
-
-**未实现。** 已验证书页正文确实存在于 TextMap（`<br>` 是 `\n` 换的），书名与系列名也在，但**没找到「哪本书对应哪些正文 hash」的那份配置**：
-
-- `ExcelOutput/ReadableConfig.json`、`ReadableTextConfig.json`、`BookContentConfig.json` 均 404
-- `BookSeriesConfig.json`（已下载验证，828 条）字段为 `BookSeriesID / BookSeries / BookSeriesComments / BookSeriesNum / BookSeriesWorld / IsShowInBookshelf`，其中的 hash 是系列名与系列点评，**不含正文**
-
-留待后续。
 
 ### `site/data/{CH,EN}/*.js` 衍生数据
 
