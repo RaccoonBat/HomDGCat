@@ -442,10 +442,8 @@ class SiteHandler(http.server.BaseHTTPRequestHandler):
     def _cache_control(ext):
         if ext in _STATIC_BIN | {'.woff', '.woff2'}:
             return "public, max-age=604800"        # 7 天 — 图片/字体不变
-        if ext in ('.js', '.css'):
-            return "public, max-age=86400"         # 1 天 — JS/CSS 可能更新
-        if ext == '.html':
-            return "public, max-age=3600"          # 1 小时 — 页面
+        if ext in ('.html', '.js', '.css', '.json'):
+            return "no-cache"  # Revalidate mutable files across data/code updates.
         return "public, max-age=3600"
 
     def do_GET(self):
@@ -477,15 +475,6 @@ def _serve_stdlib(port):
 
 
 # ─── ASGI 生产服务器 (starlette + hypercorn) ────────────────
-
-_CACHE_MAX_AGE = {
-    '.png': 604800, '.jpg': 604800, '.jpeg': 604800, '.gif': 604800,
-    '.webp': 604800, '.woff': 604800, '.woff2': 604800, '.wav': 604800,
-    '.ico': 604800,
-    '.js': 86400, '.css': 86400,
-    '.html': 3600, '.json': 3600,
-}
-
 
 def _make_asgi_app():
     """构建 ASGI 应用，需要 starlette。"""
@@ -524,9 +513,8 @@ def _make_asgi_app():
         st = target.stat()
         etag = _etag_for(st)
         ext = target.suffix.lower()
-        max_age = _CACHE_MAX_AGE.get(ext, 3600)
         extra = {
-            "Cache-Control": f"public, max-age={max_age}",
+            "Cache-Control": SiteHandler._cache_control(ext),
             "Access-Control-Allow-Origin": "*",
         }
 

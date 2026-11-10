@@ -22,69 +22,43 @@ python main.py serve
 
 ```
 
-3. 如有修改，请不要直接提交！！github 限制大于100Mb的文件上传，请使用 LFS！！！
+3. 页面使用本地 Vue 运行时，不需要安装 Node 或 npm 依赖。
 
-4. 请使用 LFS 存储大文件，本地安装 github LFS 后，运行
+## 数据更新
 
-```bash
-
-git lfs install
-
-git lfs track "site/TextMap/*.json"
-
-```
-
-5. 上述命令一定要在提交之前执行，告诉git lfs 要跟踪的文件，否则必然提交不成功
-
-6. 后续为区分原和铁，我会将两者的文件夹逐步切分，原作者混杂在一起的数据也会整理重新上传
-
-## 文本更新工具
-
-游戏版本更新后，用 `tools/sr_update.py` 把新版本文本追加到现有数据中。
+网站使用统一的 4.6 完整合集：公共配置只保存一份，简中、英文、日文、韩文文本按语言分片，页面按需读取。正式数据位于 `site/data`；原始解包压缩包不进入仓库。
 
 ```bash
-# 1. 拉取官方源文件到 tools/cache/（需要梯子，约 150 MB）
-python tools/sr_update.py fetch
+# 下载固定版本、转换全部配置与四语文本、校验、替换正式数据，再清理临时源文件
+python -B tools/game_data.py update
 
-# 2. 查看现状与已记录的增量
-python tools/sr_update.py status
+# 校验本地正式合集
+python -B tools/game_data.py validate --collection site/data
 
-# 3. 把差集追加进 site/TextMap/（文本 + 对话）
-python tools/sr_update.py build
-
-# 4. 重新生成阅读物 SR_Book_*.js
-python tools/sr_update.py book
-
-# 5. 生成增量展示页
-python tools/sr_update.py report
+# 已有下载文件时复用；不会删除用户提供的压缩包
+python -B tools/game_data.py update --archive /path/to/source.zip
 ```
 
-展示页地址：`http://localhost:9000/sr/textupd/`（需先 `python main.py serve`）
+全文、对话、阅读物直接从同一合集读取；独立的文本增量更新页和旧增量工具已移除。
 
-### 数据来源
+数据源：[DimbreathBot/TurnBasedGameData](https://github.com/DimbreathBot/TurnBasedGameData)，固定提交 `74a7b96fba32f00cf495a5c00b0311bd02207aaf`。图片补充来源：[Mar-7th/StarRailRes](https://github.com/Mar-7th/StarRailRes)，固定提交 `dbe8cdfcfb0bf657b9fe1cf92d5537f118ccb487`。升级目标版本时需同时核对 `tools/gamedata/source.py` 和 `release.py` 中的版本及比较基线。
 
-[`DimbreathBot/TurnBasedGameData`](https://github.com/DimbreathBot/TurnBasedGameData)，按 commit SHA 固定下载，保证同一版本可复现：
+`manifest.json` 记录版本、文件索引和摘要，校验结果直接输出到终端。文本使用远程 64 位 ID 字符串，避免浏览器数值精度损失。
 
-| 源文件 | 用途 |
-|---|---|
-| `TextMap/TextMapCHS.json` | 中文主文本表 |
-| `TextMap/TextMapEN.json` | 英文主文本表 |
-| `ExcelOutput/TalkSentenceConfig.json` | 剧情对话索引 |
-| `ExcelOutput/BookSeriesWorld.json` | 阅读物：世界/系列列表 |
-| `ExcelOutput/BookSeriesConfig.json` | 阅读物：书系列名称与描述 |
-| `ExcelOutput/LocalbookConfig.json` | 阅读物：每本书的正文 |
+目前有 80 个怪物模板暂无图片，页面显示缺图提示。未来版本日程没有可靠源数据时不预测日期。云璃计算器、公式等站点原创内容保留，游戏数值以远程合集为准。
 
-### 注意事项
+版本倒序使用 `metadata/versions.json`：实体按远程正式版本中首次可用的记录排序，文本按首次收录排序；3.1 的文本 ID 迁移通过稳定字段引用和中英双语内容匹配衔接。镜像历史未覆盖的早期文本标为“2.6及以前”，不会冒充当前版本新增。
 
-- **`build` 只追加，不改动任何已有内容**，重复运行不会产生二次写入（差集为空时一个字节都不写）。
-- **`book` 是整文件重新生成，不是追加** —— 官方的书系列顺序与现有文件不同，逐条比对的成本高于直接重建。想先看差异用 `python tools/sr_update.py book --dry-run`。
-- 写入前会在 `tools/cache/backup/<SHA>/` 留备份。不满意可回滚：
-  `git checkout -- site/TextMap/`
-- **`H` 字段由本地生成**，与 homdgcat.wiki 官方站点的 hash 搜索不一致。官方 `H` 是 32 位的内部 ID，实测无法从官方 64 位 xxhash 复现，所以新条目按 `xxh32(hash64)` 生成并记录在 `tools/cache/h_map.json`，保证可复现。
-- `site/TextMap/*.json` 由 LFS 管理，提交前确认已执行 `git lfs install`。
-- ⚠️ **这三个文件每次修改都会往 LFS 上传约 100 MB 的新对象。** GitHub 免费额度是 1 GB 存储 / 1 GB 月流量，请避免反复提交。
-- `TalkSentenceConfig.json` 的字段结构是运行时探测的。如果源文件格式变了，`build` 会报错并打印实际字段名，而不会写入错数据。
-- 已知限制：版本号只依据 `TextMapCHS.json` 的提交确定。若某次发布只更新了对话索引而未动主文本表，那个更新不会被检测到。
+## 脚本与资源维护
+
+`site/javascripts/` 分为 `core/`（公共界面与文本）、`data/`（统一数据读取）和 `pages/`（页面），文件使用小写连字符命名。
+
+```bash
+# 核对图片的页面、样式、动态目录和游戏数据引用
+python -B tools/site_assets.py audit
+# 删除未引用图片并清理空图片目录
+python -B tools/site_assets.py prune
+```
 
 ## 许可
 

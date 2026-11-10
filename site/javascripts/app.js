@@ -1,4 +1,12 @@
 import { createApp, h, Fragment, createStaticVNode, onMounted } from '/plugins/vue.runtime.esm-browser.prod.js';
+import {gameData} from '/javascripts/data/collection.js?v=4.6-search-20261110-final';
+
+const ASSET_VERSION = '4.6-search-20261110-final';
+function assetURL(src) {
+    const url = new URL(src, location.href);
+    url.searchParams.set('v', ASSET_VERSION);
+    return url.pathname + url.search;
+}
 
 function routeKey(path) {
     return path.replace(/\/index\.html$/, '').replace(/\/+$/, '') || '/index';
@@ -13,13 +21,14 @@ function lookup(routes, path) {
 function loadScript(src) {
     return new Promise((resolve, reject) => {
         const script = document.createElement('script');
-        script.src = src;
+        script.src = assetURL(src);
         script.onload = resolve;
         script.onerror = () => reject(new Error('无法加载 / Cannot load ' + src));
         document.head.append(script);
     });
 }
 function loadStyle(href) {
+    href = assetURL(href);
     if ([...document.querySelectorAll('link[rel="stylesheet"]')].some(link => link.getAttribute('href') === href)) return Promise.resolve();
     return new Promise(resolve => {
         const link = document.createElement('link');
@@ -48,15 +57,28 @@ const SharedPage = {
         onMounted(async () => {
             let held = false;
             try {
-                await loadScript('/javascripts/data.js');
-                await loadScript('/javascripts/ui.js');
+                await loadScript('/javascripts/core/site-ui.js');
+                if (props.profile.versioned) {
+                    const metadata = await gameData.manifest();
+                    window.WIKI_GAME_SCHEMA = metadata.schema;
+                    window.VER_SR = metadata.version.replace(/\.0$/, '');
+                    window.SR_DATES = {};
+                }
                 for (const src of props.profile.scripts) {
                     await loadScript(src);
                     if (src.includes('/jquery.js')) { window.jQuery.holdReady(true); held = true; }
                 }
-                if (props.profile.component === 'text-updates') {
-                    const { mountUpdates } = await import('./components/text-updates.js');
-                    mountUpdates();
+                if (props.profile.homeData) {
+                    const {initHomepageData} = await import('/javascripts/data/homepage.js?v=4.6-search-20261110-final');
+                    await initHomepageData();
+                }
+                if (props.profile.component === 'game-data') {
+                    const {mountGamePage} = await import('/javascripts/pages/entity-browser.js?v=4.6-search-20261110-final');
+                    mountGamePage({...props.profile.game, entityId:props.params.AVID || props.params.MONSTERID || props.params.CID || ''});
+                }
+                if (props.profile.component === 'game-text') {
+                    const {mountGameText} = await import('/javascripts/pages/text-search.js?v=4.6-search-20261110-final');
+                    mountGameText(props.profile.game || {});
                 }
             } catch (error) { showError(error); }
             finally { if (held) window.jQuery.holdReady(false); }
@@ -69,11 +91,12 @@ const SharedPage = {
 };
 
 async function boot() {
-    const response = await fetch('/pages/routes.json');
+    const response = await fetch('/pages/routes.json', {cache:'no-cache'});
     if (!response.ok) throw new Error('Route catalog: HTTP ' + response.status);
     const catalog = await response.json();
     const route = lookup(catalog.routes, location.pathname);
     if (!route) throw new Error('未知地址 / Unknown URL: ' + location.pathname);
+    if(route.redirect){location.replace(route.redirect+location.search+location.hash);return;}
     const profile = catalog.pages[route.page];
     document.title = profile.title;
     document.querySelector('meta[name="description"]').content = profile.description;
@@ -82,7 +105,7 @@ async function boot() {
         const style = document.createElement('style'); style.textContent = css; document.head.append(style);
     }
     document.body.dataset.wikiStyle = profile.styles.map(url => url.split('/').pop().replace(/\.css$/, '')).join(' ');
-    document.querySelector('link[href="/stylesheets/style.css"]')?.remove();
+    document.querySelector('link[href^="/stylesheets/style.css"]')?.remove();
     const styles = [...profile.styles];
     const insertAt = styles.findIndex(url => !['/stylesheets/thin.css', '/stylesheets/style.css'].includes(url));
     styles.splice(insertAt < 0 ? styles.length : insertAt, 0, '/stylesheets/shared.css');

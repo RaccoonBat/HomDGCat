@@ -120,3 +120,4 @@ site/                # Site files directory
 ## License
 
 This tool is intended for personal offline backup of homdgcat.wiki. All site content is copyrighted by its original authors.
+For full data updates and pinned sources, see [README](README.md#数据更新).
