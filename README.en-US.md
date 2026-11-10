@@ -1,123 +1,100 @@
-> Pages now use a shared, locally bundled Vue entry (no npm installation). Keep using `python main.py serve` locally. For static hosting, run `python tools/site_pages.py export --output dist` and publish dist.
+# Honkai: Star Rail Reference Site
 
-[中文文档](README.zh-CN.md)
+Browse characters, light cones, relics, enemies, stages, readables and game text in Simplified Chinese, English, Japanese and Korean.
 
-# HomDGCat Wiki Mirror
-
-A complete offline mirror of [homdgcat.wiki](https://homdgcat.wiki), covering characters, weapons, artifacts/relics and more from Genshin Impact and Honkai: Star Rail.
-
-## Contents
-
-- 15,357 files, ~2.5 GB
-- 575+ pages (Genshin + Star Rail characters/weapons/artifacts, etc.)
-- 4,580+ dynamic subpages (quests, items, monsters, GCG cards, etc.)
-- Data files in 5 languages (CH / EN / JP / KR / RU)
-- All image assets (avatars, skill icons, weapon art, gacha art, etc.)
-- TextMap localization data
-
-## Quick Start
-
-### Get Site Data
-
-The site data (`site/` directory, ~2.5 GB) is already included in this repository. if necessary, the way to obtain it:
-
-**Option : Download from GitHub Releases (Recommended)**
-
-Download `site.7z` from the [latest release](https://github.com/NewbieXvwu/HomDGCat/releases) and extract it to the project root:
-
-```bash
-# Download (~2 GB)
-curl -LO https://github.com/NewbieXvwu/HomDGCat/releases/download/initial/site.7z
-
-# Extract (requires 7-Zip)
-7z x site.7z
-```
-
-### Browse Locally
-
-```bash
-# Default port 9000
-python main.py serve
-
-# Custom port
-python main.py serve --port 3000
-```
-
-Open `http://localhost:9000` in your browser to browse the full site.
-
-## Server Engines
-
-The script supports two server engines and auto-detects availability:
-
-### stdlib mode (zero dependencies)
-
-Works out of the box with no third-party packages. Based on Python's `http.server`:
-
-- HTTP/1.1 + keep-alive
-- Multi-threaded request handling
-- gzip compression (with LRU cache)
-- ETag / 304 conditional requests
-- Tiered Cache-Control headers
-
-Suitable for personal local browsing.
-
-### ASGI mode (recommended)
-
-Auto-enabled when dependencies are installed:
-
-```bash
-pip install starlette hypercorn h2
-```
-
-Based on hypercorn + starlette:
-
-- Async I/O, far better concurrency than threading
-- HTTP/2 support (requires TLS certificate)
-- Production-grade connection management and timeouts
-- gzip compression + ETag / 304
-- Path traversal protection
-
-Enable HTTPS + HTTP/2:
-
-```bash
-python main.py serve --cert cert.pem --key key.pem
-```
-
-## File Structure
-
-```
-main.py               # Unified tool script (download / serve / status)
-filelist.txt         # Complete file list (15,357 entries)
-site/                # Site files directory
-  index/             # Homepage
-  sr/char/           # Star Rail character pages
-  data/{CH,EN,...}/  # Star Rail multi-language data
-  images/            # Star Rail image assets
-  TextMap/           # TextMap localization data
-```
-
-## Command Reference
-
-| Command | Description |
-|---------|-------------|
-| `download` | Download all missing files |
-| `download -w 16` | Use 16 concurrent threads |
-| `download -r 5` | Retry failed downloads 5 times |
-| `serve` | Start local server |
-| `serve -p 3000` | Custom port |
-| `serve --cert X --key Y` | Enable HTTPS/HTTP2 |
-| `status` | Show download progress |
-| `--lang en` | Force English output |
-| `--lang zh` | Force Chinese output |
+[中文说明](README.zh-CN.md) · [Project overview](README.md)
 
 ## Requirements
 
-- Python 3.8+
-- Download: no third-party dependencies
-- Server (stdlib mode): no third-party dependencies
-- Server (ASGI mode): `starlette`, `hypercorn`, `h2`
+- Python 3.10 or newer.
+- A modern browser with JavaScript enabled.
+- Frontend libraries are bundled locally. Node.js and npm installation are not required.
 
-## License
+## Run locally
 
-This tool is intended for personal offline backup of homdgcat.wiki. All site content is copyrighted by its original authors.
-For full data updates and pinned sources, see [README](README.md#数据更新).
+From the project root:
+
+```bash
+python main.py serve
+```
+
+Open [http://localhost:9000/](http://localhost:9000/). Press `Ctrl+C` to stop the server.
+
+Use a different port:
+
+```bash
+python main.py serve --port 3000
+```
+
+Access the site over HTTP instead of opening HTML files directly.
+
+## Directory layout
+
+```text
+.
+├── main.py                     # Local HTTP server entry
+├── filelist.txt                # Static asset path list
+├── site/
+│   ├── pages/
+│   │   ├── index.html          # Shared page entry
+│   │   └── routes.json         # Routes and page configuration
+│   ├── javascripts/
+│   │   ├── app.js              # Application entry
+│   │   ├── core/               # Language, shared UI and rich text
+│   │   ├── data/               # Data loading and relationships
+│   │   └── pages/              # Page logic
+│   ├── data/
+│   │   ├── common/             # Shared configuration and logic
+│   │   ├── CH/                 # Simplified Chinese text
+│   │   ├── EN/                 # English text
+│   │   ├── JP/                 # Japanese text
+│   │   ├── KR/                 # Korean text
+│   │   └── metadata/           # Version and file indexes
+│   ├── stylesheets/            # Page styles
+│   ├── images/                 # Images
+│   ├── fonts/                  # Fonts
+│   ├── UI/                     # Shared UI assets
+│   └── plugins/                # Bundled frontend libraries
+└── tools/
+    ├── game_data.py            # Data update and validation entry
+    ├── gamedata/               # Data processing modules
+    ├── site_assets.py          # Image reference checks and cleanup
+    └── site_pages.py           # Page routing and static export
+```
+
+## Static deployment
+
+```bash
+python -B tools/site_pages.py export --output dist
+```
+
+The output directory must be empty. Publish the contents of `dist/` at the website root. No application backend is required.
+
+## Maintenance
+
+```bash
+# Update site data; requires internet access, not needed for everyday browsing
+python -B tools/game_data.py update
+
+# Validate existing data
+python -B tools/game_data.py validate --collection site/data
+
+# Audit image references
+python -B tools/site_assets.py audit
+
+# Delete unreferenced images and empty image directories
+python -B tools/site_assets.py prune
+```
+
+## Optional HTTPS server
+
+The default server needs no third-party Python packages. For ASGI and HTTPS:
+
+```bash
+pip install starlette hypercorn h2
+python main.py serve --cert cert.pem --key key.pem
+```
+
+## Content notice
+
+Game content and assets belong to their respective rights holders.
