@@ -1,3 +1,5 @@
+> Pages now use a shared, locally bundled Vue entry (no npm installation). Keep using `python main.py serve` locally. For static hosting, run `python tools/site_pages.py export --output dist` and publish dist.
+
 # HomDGCat Wiki Mirror
 
 [homdgcat.wiki](https://homdgcat.wiki) 的完整离线镜像，涵盖崩坏：星穹铁道的角色、光锥、遗器等数据。

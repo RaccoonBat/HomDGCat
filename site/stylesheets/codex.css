@@ -36,10 +36,6 @@ popheader {
     cursor: pointer;
 }
 
-.path schedule.active {
-    background-color: #2545ba;
-}
-
 .path img {
     width: 60px;
 }
@@ -47,13 +43,6 @@ popheader {
 schedule.active {
     background-color: rgb(37, 69, 186);
     color: #fff;
-}
-
-section {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    margin: 0px 15px;
 }
 
 .blessing_card_area {
@@ -82,10 +71,6 @@ section {
     text-align: center;
     margin-bottom: 5px;
     line-height: 2;
-}
-.image {
-    width: calc(100%);
-    margin: 0px 0px 10px 0px;
 }
 
 @media screen and (min-width: 500px) and (max-width: 800px) {

@@ -28,14 +28,6 @@
     position: relative;
 }
 
-.ml {
-    position: absolute;
-    top: -9px;
-    right: 12px;
-    font-size: 32px;
-    cursor: pointer;
-}
-
 .name {
     text-align: center;
     font-weight: bold;

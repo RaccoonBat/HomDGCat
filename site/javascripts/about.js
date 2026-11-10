@@ -10,16 +10,7 @@ $(function () {
     $('h3 .title').html(txt.Title[lang])
     $('h3 .lang').html(txt.Home_Lang)
     $('h3 .lang').hide()
-    $('h3 .links').render([
-        {
-            img: imgpre + 'images/menu.png',
-            class: '_menu_'
-        },
-        {
-            img: imgpre + 'images/translate.png',
-            class: '_translate_'
-        }
-    ]);
+    WikiUI.menuIcons(imgpre);
     $('h3 .links').css('margin-top', '23px')
 
     $('body').on('click', '._menu_', function () {

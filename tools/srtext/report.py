@@ -52,7 +52,7 @@ class Ledger:
         self.path.parent.mkdir(parents=True, exist_ok=True)
         temp_path = self.path.with_name(self.path.name + ".tmp")
         with temp_path.open("w", encoding="utf-8") as handle:
-            json.dump({"runs": self.runs}, handle, ensure_ascii=False, indent=2)
+            json.dump({"schema": 1, "runs": self.runs}, handle, ensure_ascii=False, separators=(",", ":"))
         temp_path.replace(self.path)
 
     def all_textmap_hashes(self) -> set[int]:
@@ -81,11 +81,10 @@ class Ledger:
 
 
 def write_added_json(path: Path, payload: Mapping[str, Any]) -> None:
-    """写出展示页加载的增量数据。"""
+    """只保存版本和 ID 索引；正文统一读取 TextMap，避免复制整份增量。"""
     path = Path(path)
     path.parent.mkdir(parents=True, exist_ok=True)
-    document = dict(payload)
-    document["run_count"] = len(payload.get("runs", []))
+    document = {"schema": 1, "runs": list(payload.get("runs", []))}
     temp_path = path.with_name(path.name + ".tmp")
     with temp_path.open("w", encoding="utf-8") as handle:
         json.dump(document, handle, ensure_ascii=False, separators=(",", ":"))
@@ -95,6 +94,10 @@ def write_added_json(path: Path, payload: Mapping[str, Any]) -> None:
 def collect_added_textmap(records: Iterable[Mapping[str, Any]], ledger: Ledger) -> list[dict[str, Any]]:
     """按 ledger 筛出新增文本条目，附上来源版本标签。"""
     wanted = ledger.all_textmap_hashes()
+    versions = {}
+    for run in ledger.runs:
+        for identifier in run.get("textmap_hashes", []):
+            versions.setdefault(identifier, run.get("version"))
     collected: list[dict[str, Any]] = []
     for record in records:
         hash_value = record.get("H")
@@ -105,7 +108,7 @@ def collect_added_textmap(records: Iterable[Mapping[str, Any]], ledger: Ledger) 
             item["C"] = record["C"]
         if record.get("E"):
             item["E"] = record["E"]
-        item["v"] = ledger.version_for_textmap_hash(hash_value)
+        item["v"] = versions.get(hash_value)
         collected.append(item)
     return collected
 
@@ -115,6 +118,10 @@ def collect_added_talk(ch_records, en_records, ledger: Ledger) -> list[dict[str,
     wanted = ledger.all_talk_ids()
     english_by_id = {rec["I"]: rec for rec in en_records if rec.get("I") in wanted}
 
+    versions = {}
+    for run in ledger.runs:
+        for identifier in run.get("talk_ids", []):
+            versions.setdefault(identifier, run.get("version"))
     collected: list[dict[str, Any]] = []
     for record in ch_records:
         identifier = record.get("I")
@@ -128,7 +135,7 @@ def collect_added_talk(ch_records, en_records, ledger: Ledger) -> list[dict[str,
                 "TCH": record.get("T", ""),
                 "SEN": counterpart.get("S", ""),
                 "TEN": counterpart.get("T", ""),
-                "v": ledger.version_for_talk_id(identifier),
+                "v": versions.get(identifier),
             }
         )
     return collected

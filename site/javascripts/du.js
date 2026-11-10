@@ -6,20 +6,10 @@ $(function () {
     if (lang == 'EN') { $('body').css('font-family', "'Segoe UI', sans-serif") }
     else { $('body').css('font-family', "'Microsoft YaHei', sans-serif") }
 
-    $('h3 .title').html(txt.Title[lang] + "<color style='font-size: 26px;'><br>" + txt.game_img[lang] + VER_SR + "</b></color>")
-    $('h3 .subtitle').html(txt.Subtitle[lang]);
+    WikiUI.headerTitle();
     $('h3 .lang').html(txt.Home_Lang)
     $('h3 .lang').hide()
-    $('h3 .links').render([
-        {
-            img: imgpre + 'images/menu.png',
-            class: '_menu_'
-        },
-        {
-            img: imgpre + 'images/translate.png',
-            class: '_translate_'
-        }
-    ]);
+    WikiUI.menuIcons(imgpre);
 
     $('body').on('click', '._menu_', function () {
         popLinks(lang)

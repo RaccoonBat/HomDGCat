@@ -102,26 +102,6 @@ schedule {
     margin-bottom: 0px;
 }
 
-.info {
-    position: absolute;
-    top: 0px;
-    left: 12px;
-    font-size: 25px;
-    cursor: pointer;
-}
-
-.ml {
-    position: absolute;
-    top: -9px;
-    right: 12px;
-    font-size: 32px;
-    cursor: pointer;
-}
-
-.infou {
-    cursor: pointer;
-}
-
 .path schedule {
     background-color: #27363e;
     width: 60px;

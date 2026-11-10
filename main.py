@@ -36,6 +36,7 @@ from functools import lru_cache
 from pathlib import Path
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from urllib.parse import unquote, quote
+from tools.site_pages import resolve_site_path
 
 ROOT_DIR = Path(__file__).parent
 SITE_DIR = ROOT_DIR / "site"
@@ -362,36 +363,7 @@ class SiteHandler(http.server.BaseHTTPRequestHandler):
         """路由解析：URL → 本地文件路径。
         先尝试 URL 解码后的路径（常规文件），再尝试原始路径（percent-encoded 文件名）。
         """
-        raw = self.path.split("?")[0].split("#")[0]
-        decoded = unquote(raw)
-        site_resolved = SITE_DIR.resolve()
-
-        # 按优先级尝试两种路径：decoded 和 raw（percent-encoded 原样）
-        for candidate in (decoded, raw):
-            stripped = candidate.lstrip("/")
-            if not stripped:
-                # 根路径
-                idx = SITE_DIR / "index" / "index.html"
-                if idx.is_file():
-                    return idx
-                continue
-            try:
-                fp = SITE_DIR / stripped
-            except (ValueError, OSError):
-                continue
-            if fp.is_file():
-                target = fp
-            elif (fp / "index.html").is_file():
-                target = fp / "index.html"
-            else:
-                continue
-            # 路径穿越防护
-            try:
-                target.resolve().relative_to(site_resolved)
-            except (ValueError, OSError):
-                return None
-            return target
-        return None
+        return resolve_site_path(SITE_DIR, self.path)
 
     def _serve_file(self, fp, head_only=False):
         """发送文件响应，处理 ETag/304 和 gzip。"""
@@ -537,29 +509,7 @@ def _make_asgi_app():
             return f'"{hashlib.md5(base.encode()).hexdigest()}"'
 
     def _resolve(*candidates):
-        """尝试多个路径候选，兼容 decoded 和 percent-encoded 文件名。"""
-        for candidate in candidates:
-            if not candidate or candidate == "/":
-                idx = site / "index" / "index.html"
-                if idx.is_file():
-                    return idx
-                continue
-            try:
-                fp = site / candidate
-            except (ValueError, OSError):
-                continue
-            if fp.is_file():
-                target = fp
-            elif (fp / "index.html").is_file():
-                target = fp / "index.html"
-            else:
-                continue
-            try:
-                target.resolve().relative_to(site)
-            except (ValueError, OSError):
-                return None
-            return target
-        return None
+        return resolve_site_path(site, *candidates)
 
     async def handle(request):
         # decoded path (starlette 已解码)

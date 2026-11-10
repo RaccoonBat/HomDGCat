@@ -1,3 +1,5 @@
+> 页面现已整合为 Vue 共用入口，无需 npm 安装。本地仍运行 `python main.py serve`；纯静态发布请先运行 `python tools/site_pages.py export --output dist` 并上传 dist。
+
 [English](README.md)
 
 # HomDGCat Wiki Mirror

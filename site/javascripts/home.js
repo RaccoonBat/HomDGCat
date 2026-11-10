@@ -161,16 +161,7 @@ $(function() {
     $('h3 .title').html(txt.Title[lang] + "<color style='font-size: 28px;'><br><b>" + VER_SR + "</b></color>")
 
     var imgpre = $('#IMGPRE').val()
-    $('h3 .links').render([
-        {
-            img: imgpre + 'images/menu.png',
-            class: '_menu_'
-        },
-        {
-            img: imgpre + 'images/translate.png',
-            class: '_translate_'
-        }
-    ]);
+    WikiUI.menuIcons(imgpre);
 
     $('body').on('click', '._menu_', function () {
         popLinks(lang)
@@ -314,40 +305,7 @@ $(function() {
                                     border: '2px solid #f29e38',
                                 }
                             },
-                            {
-                                schedule: {
-                                    a: '/sr/readable',
-                                    t: {
-                                        span: (lang == 'CH') ? '阅读物搜索' : 'Readables Search',
-                                        style: {
-                                            'margin': 'auto',
-                                            'font-weight': 'bold',
-                                        }
-                                    }
-                                },
-                                class: 'hover-shadow panel',
-                                style: {
-                                    width: 'max-content',
-                                    border: '2px solid #f29e38',
-                                }
-                            },
-                            {
-                                schedule: {
-                                    a: '/sr/search',
-                                    t: {
-                                        span: (lang == 'CH') ? '文本+剧情搜索' : 'Text+Dialogue Search',
-                                        style: {
-                                            'margin': 'auto',
-                                            'font-weight': 'bold',
-                                        }
-                                    }
-                                },
-                                class: 'hover-shadow panel',
-                                style: {
-                                    width: 'max-content',
-                                    border: '2px solid #f29e38',
-                                }
-                            },
+                            ...WikiUI.textLinks('home'),
                         ]
                     },
                 ],

@@ -1016,44 +1016,7 @@ function popLinks(l) {
                             width: 'max-content',
                         },
                     },
-                    {
-                        schedule: {
-                            a: '/sr/readable',
-                            t: {
-                                span: (lang == 'CH') ? '阅读物搜索' : 'Readables Search',
-                                style: {
-                                    'margin': 'auto',
-                                    'font-weight': 'bold',
-                                },
-                                class: 'panel'
-                            },
-                            class: 'panel'
-                        },
-                        
-                        class: 'hover-shadow panelw',
-                        style: {
-                            width: 'max-content',
-                        },
-                    },
-                    {
-                        schedule: {
-                            a: '/sr/search',
-                            t: {
-                                span: (lang == 'CH') ? '文本+剧情搜索' : 'Text+Dialogue Search',
-                                style: {
-                                    'margin': 'auto',
-                                    'font-weight': 'bold',
-                                },
-                                class: 'panel'
-                            },
-                            class: 'panel'
-                        },
-                        
-                        class: 'hover-shadow panelw',
-                        style: {
-                            width: 'max-content',
-                        },
-                    },
+                    ...WikiUI.textLinks('menu'),
                 ],
                 class: 'menu_SR menu_SR_2',
                 style: {

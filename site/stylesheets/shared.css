@@ -1,0 +1,669 @@
+/* Shared declarations. :where() preserves the original selector specificity. */
+
+:where(body[data-wiki-style~="about"],body[data-wiki-style~="arbitration"],body[data-wiki-style~="as"],body[data-wiki-style~="chaos"],body[data-wiki-style~="fiction"],body[data-wiki-style~="stage"]) .ver,
+:where(body[data-wiki-style~="about"],body[data-wiki-style~="arbitration"],body[data-wiki-style~="as"],body[data-wiki-style~="chaos"],body[data-wiki-style~="fiction"],body[data-wiki-style~="stage"]) .floor,
+:where(body[data-wiki-style~="about"],body[data-wiki-style~="arbitration"],body[data-wiki-style~="as"],body[data-wiki-style~="chaos"],body[data-wiki-style~="fiction"],body[data-wiki-style~="stage"]) .floor_select {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
+}
+
+:where(body[data-wiki-style~="about"],body[data-wiki-style~="arbitration"],body[data-wiki-style~="as"],body[data-wiki-style~="chaos"],body[data-wiki-style~="fiction"],body[data-wiki-style~="stage"]) .ver_text p {
+    font-weight: bold;
+    text-align: center;
+
+}
+
+:where(body[data-wiki-style~="about"],body[data-wiki-style~="char"],body[data-wiki-style~="mons"]) .as_left_2 {
+    width: calc(min(25%, 110px));
+    margin: 0!important;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+
+}
+
+:where(body[data-wiki-style~="about"],body[data-wiki-style~="char"],body[data-wiki-style~="mons"]) .as_left_name {
+    margin: 3px 0;
+    width: 100%;
+    text-align: center;
+    font-size: 14px;
+
+}
+
+:where(body[data-wiki-style~="about"],body[data-wiki-style~="char"],body[data-wiki-style~="mons"]) .as_left_name a {
+    color: #f29e38;
+
+}
+
+:where(body[data-wiki-style~="about"],body[data-wiki-style~="char"],body[data-wiki-style~="mons"]) .as_right_2 {
+    display: flex;
+    flex-direction: column;
+    margin: 0 10px!important;
+    padding: 0;
+    justify-content: center;
+
+}
+
+:where(body[data-wiki-style~="about"],body[data-wiki-style~="char"],body[data-wiki-style~="mons"]) .as_2 {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 10px 0!important;
+    width: 100%;
+
+}
+
+:where(body[data-wiki-style~="arbitration"],body[data-wiki-style~="as"],body[data-wiki-style~="banner_sr"],body[data-wiki-style~="chaos"],body[data-wiki-style~="effect"],body[data-wiki-style~="fiction"],body[data-wiki-style~="formulae_sr"],body[data-wiki-style~="mons"],body[data-wiki-style~="stage"],body[data-wiki-style~="yunli"]) .title {
+    color: #fff;
+    cursor: pointer;
+
+}
+
+:where(body[data-wiki-style~="arbitration"],body[data-wiki-style~="as"],body[data-wiki-style~="chaos"],body[data-wiki-style~="fiction"]) .button_w {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
+}
+
+:where(body[data-wiki-style~="arbitration"],body[data-wiki-style~="as"],body[data-wiki-style~="chaos"],body[data-wiki-style~="fiction"]) .dl_button,
+:where(body[data-wiki-style~="arbitration"],body[data-wiki-style~="as"],body[data-wiki-style~="chaos"],body[data-wiki-style~="fiction"]) .yunli_button {
+    margin: 17px 6px 2px;
+    border-radius: 4px;
+    border: 2px solid #F29E38;
+    font-size: 15px;
+    width: max-content;
+    font-weight: bold;
+    display: flex;
+
+}
+
+:where(body[data-wiki-style~="arbitration"],body[data-wiki-style~="as"],body[data-wiki-style~="chaos"],body[data-wiki-style~="fiction"]) .level_ span {
+    padding: 9px 12px;
+
+}
+
+:where(body[data-wiki-style~="arbitration"],body[data-wiki-style~="as"],body[data-wiki-style~="chaos"],body[data-wiki-style~="fiction"]) .perf_img {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 8px;
+    margin-right: -8px;
+
+}
+
+:where(body[data-wiki-style~="arbitration"],body[data-wiki-style~="as"],body[data-wiki-style~="chaos"],body[data-wiki-style~="fiction"]) .perf_img img {
+    height: 33px;
+
+}
+
+:where(body[data-wiki-style~="arbitration"],body[data-wiki-style~="as"],body[data-wiki-style~="chaos"],body[data-wiki-style~="fiction"],body[data-wiki-style~="mons"],body[data-wiki-style~="stage"]) .skill_phase schedule {
+    width: calc((100% - 120px) / 3);
+    font-size: 14px;
+
+}
+
+:where(body[data-wiki-style~="arbitration"],body[data-wiki-style~="as"],body[data-wiki-style~="chaos"],body[data-wiki-style~="fiction"],body[data-wiki-style~="stage"]) .monster_card div {
+    text-align: center;
+
+}
+
+:where(body[data-wiki-style~="arbitration"],body[data-wiki-style~="as"],body[data-wiki-style~="chaos"],body[data-wiki-style~="fiction"],body[data-wiki-style~="stage"]) .monbottom {
+    margin-top: 4px;
+
+}
+
+:where(body[data-wiki-style~="arbitration"],body[data-wiki-style~="as"],body[data-wiki-style~="chaos"],body[data-wiki-style~="fiction"],body[data-wiki-style~="mons"],body[data-wiki-style~="stage"]) .mon_head,
+:where(body[data-wiki-style~="arbitration"],body[data-wiki-style~="as"],body[data-wiki-style~="chaos"],body[data-wiki-style~="fiction"],body[data-wiki-style~="mons"],body[data-wiki-style~="stage"]) .mon_head section {
+    margin: 0px;
+
+}
+
+:where(body[data-wiki-style~="arbitration"],body[data-wiki-style~="as"],body[data-wiki-style~="chaos"],body[data-wiki-style~="fiction"],body[data-wiki-style~="mons"],body[data-wiki-style~="stage"]) .dmg_show {
+    margin: 5px;
+    font-size: 15px;
+    width: 100%;
+    text-align: center;
+    font-weight: bold;
+
+}
+
+:where(body[data-wiki-style~="arbitration"],body[data-wiki-style~="as"],body[data-wiki-style~="chaos"],body[data-wiki-style~="fiction"],body[data-wiki-style~="mons"],body[data-wiki-style~="stage"]) .DMG_input {
+    padding: 15px;
+
+}
+
+:where(body[data-wiki-style~="arbitration"],body[data-wiki-style~="as"],body[data-wiki-style~="chaos"],body[data-wiki-style~="fiction"],body[data-wiki-style~="mons"],body[data-wiki-style~="stage"]) .DMG_Tut {
+    padding: 15px;
+    max-width: 90%;
+
+}
+
+:where(body[data-wiki-style~="arbitration"],body[data-wiki-style~="as"],body[data-wiki-style~="chaos"],body[data-wiki-style~="fiction"],body[data-wiki-style~="mons"],body[data-wiki-style~="stage"]) .DMG_input p {
+    margin-top: 0px;
+    text-align: center;
+
+}
+
+:where(body[data-wiki-style~="arbitration"],body[data-wiki-style~="as"],body[data-wiki-style~="chaos"],body[data-wiki-style~="fiction"],body[data-wiki-style~="mons"],body[data-wiki-style~="stage"]) .DMG_input input,
+:where(body[data-wiki-style~="arbitration"],body[data-wiki-style~="as"],body[data-wiki-style~="chaos"],body[data-wiki-style~="fiction"],body[data-wiki-style~="mons"],body[data-wiki-style~="stage"]) select {
+    width: 100px;
+    height: 30px;
+    border-radius: 3px;
+    border: 1px solid;
+    font-size: 16px;
+    text-align: center;
+
+}
+
+:where(body[data-wiki-style~="arbitration"],body[data-wiki-style~="as"],body[data-wiki-style~="chaos"],body[data-wiki-style~="fiction"],body[data-wiki-style~="mons"],body[data-wiki-style~="stage"]) .DMG_input button {
+    height: 40px;
+    width: 100px;
+    color: #fff;
+    background-color: rgb(37, 69, 186);
+    font-size: 15px;
+    border-radius: 0px;
+    top: 12px;
+    position: relative;
+    cursor: pointer;
+
+}
+
+:where(body[data-wiki-style~="arbitration"],body[data-wiki-style~="as"],body[data-wiki-style~="chaos"],body[data-wiki-style~="fiction"],body[data-wiki-style~="stage"]) .stat_ {
+    font-weight: bold;
+    color: #fff;
+    padding-left: 0px;
+
+}
+
+:where(body[data-wiki-style~="arbitration"],body[data-wiki-style~="as"],body[data-wiki-style~="chaos"],body[data-wiki-style~="fiction"],body[data-wiki-style~="stage"]) .base_stat_input div {
+    width: 100%;
+    margin: 0px;
+
+}
+
+:where(body[data-wiki-style~="arbitration"],body[data-wiki-style~="as"],body[data-wiki-style~="chaos"],body[data-wiki-style~="fiction"],body[data-wiki-style~="stage"]) .base_stat_input p {
+    font-size: 14px;
+    margin-top: 0px;
+    margin-bottom: 8px;
+    line-height: 1!important;
+    font-weight: bold;
+
+}
+
+:where(body[data-wiki-style~="arbitration"],body[data-wiki-style~="as"],body[data-wiki-style~="chaos"],body[data-wiki-style~="fiction"],body[data-wiki-style~="mons"],body[data-wiki-style~="stage"]) .base_stat_lv,
+:where(body[data-wiki-style~="arbitration"],body[data-wiki-style~="as"],body[data-wiki-style~="chaos"],body[data-wiki-style~="fiction"],body[data-wiki-style~="mons"],body[data-wiki-style~="stage"]) .base_stat_eg {
+    height: 20px!important;
+    width: 60px!important;
+    font-size: 14px!important;
+
+}
+
+:where(body[data-wiki-style~="arbitration"],body[data-wiki-style~="as"],body[data-wiki-style~="chaos"],body[data-wiki-style~="fiction"],body[data-wiki-style~="mons"],body[data-wiki-style~="stage"]) .base_stat_hlg {
+    height: 30px;
+    width: 80px;
+    font-size: 13px;
+    padding: 0px!important;
+
+}
+
+:where(body[data-wiki-style~="arbitration"],body[data-wiki-style~="as"],body[data-wiki-style~="chaos"],body[data-wiki-style~="fiction"],body[data-wiki-style~="mons"],body[data-wiki-style~="stage"]) .input_hlg {
+    font-size: 14px!important;
+    height: 33px!important;
+    width: 105px!important;
+
+}
+
+:where(body[data-wiki-style~="arbitration"],body[data-wiki-style~="as"],body[data-wiki-style~="chaos"],body[data-wiki-style~="fiction"],body[data-wiki-style~="stage"]) .up {
+    width: 35px;
+    height: 25px;
+    border-radius: 3px;
+    margin: 0px;
+    text-align: center;
+    padding: 0px;
+
+}
+
+:where(body[data-wiki-style~="arbitration"],body[data-wiki-style~="as"],body[data-wiki-style~="chaos"],body[data-wiki-style~="fiction"],body[data-wiki-style~="stage"]) .down {
+    width: 35px;
+    height: 25px;
+    border-radius: 3px;
+    margin: 0px 10px 0px 0px;
+    text-align: center;
+    padding: 0px;
+
+}
+
+:where(body[data-wiki-style~="arbitration"],body[data-wiki-style~="as"],body[data-wiki-style~="chaos"],body[data-wiki-style~="fiction"],body[data-wiki-style~="stage"]) .v_r p,
+:where(body[data-wiki-style~="arbitration"],body[data-wiki-style~="as"],body[data-wiki-style~="chaos"],body[data-wiki-style~="fiction"],body[data-wiki-style~="stage"]) .v_l p {
+    margin: 0;
+
+}
+
+:where(body[data-wiki-style~="arbitration"],body[data-wiki-style~="as"],body[data-wiki-style~="chaos"],body[data-wiki-style~="fiction"],body[data-wiki-style~="stage"]) .wave_monsters {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
+}
+
+:where(body[data-wiki-style~="arbitration"],body[data-wiki-style~="as"],body[data-wiki-style~="chaos"],body[data-wiki-style~="fiction"],body[data-wiki-style~="stage"]) .dpc {
+    line-height: 1.7;
+    margin-top: 8px;
+    margin-bottom: 0px;
+
+}
+
+:where(body[data-wiki-style~="arbitration"],body[data-wiki-style~="as"],body[data-wiki-style~="chaos"],body[data-wiki-style~="fiction"],body[data-wiki-style~="stage"]) .f_l,
+:where(body[data-wiki-style~="arbitration"],body[data-wiki-style~="as"],body[data-wiki-style~="chaos"],body[data-wiki-style~="fiction"],body[data-wiki-style~="stage"]) .f_r,
+:where(body[data-wiki-style~="arbitration"],body[data-wiki-style~="as"],body[data-wiki-style~="chaos"],body[data-wiki-style~="fiction"],body[data-wiki-style~="stage"]) .f_text {
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 10px;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+
+}
+
+:where(body[data-wiki-style~="arbitration"],body[data-wiki-style~="as"],body[data-wiki-style~="chaos"],body[data-wiki-style~="fiction"],body[data-wiki-style~="stage"]) .f_text {
+    margin-left: 5px;
+    margin-right: 5px;
+    width: 50px;
+    text-align: center;
+
+}
+
+:where(body[data-wiki-style~="arbitration"],body[data-wiki-style~="as"],body[data-wiki-style~="chaos"],body[data-wiki-style~="fiction"],body[data-wiki-style~="stage"]) .f_l,
+:where(body[data-wiki-style~="arbitration"],body[data-wiki-style~="as"],body[data-wiki-style~="chaos"],body[data-wiki-style~="fiction"],body[data-wiki-style~="stage"]) .f_r {
+    cursor: pointer;
+
+}
+
+:where(body[data-wiki-style~="arbitration"],body[data-wiki-style~="as"],body[data-wiki-style~="chaos"],body[data-wiki-style~="fiction"],body[data-wiki-style~="stage"]) .info_area p {
+    font-size: 14px;
+
+}
+
+:where(body[data-wiki-style~="arbitration"],body[data-wiki-style~="as"],body[data-wiki-style~="chaos"],body[data-wiki-style~="stage"]) .info_area {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    margin-top: 8px;
+
+}
+
+:where(body[data-wiki-style~="arbitration"],body[data-wiki-style~="as"],body[data-wiki-style~="chaos"],body[data-wiki-style~="fiction"],body[data-wiki-style~="stage"]) .buff_desc {
+    margin-bottom: 0px;
+    line-height: 1.7;
+    margin-top: 11px;
+
+}
+
+:where(body[data-wiki-style~="arbitration"],body[data-wiki-style~="as"],body[data-wiki-style~="chaos"],body[data-wiki-style~="fiction"],body[data-wiki-style~="stage"]) .target_c {
+    margin-top: 6px;
+    margin-bottom: 6px;
+
+}
+
+:where(body[data-wiki-style~="arbitration"],body[data-wiki-style~="as"],body[data-wiki-style~="chaos"],body[data-wiki-style~="fiction"],body[data-wiki-style~="stage"]) .target_t {
+    margin-bottom: 0px;
+    line-height: 1.7;
+    margin-top: 6px;
+
+}
+
+:where(body[data-wiki-style~="arbitration"],body[data-wiki-style~="as"],body[data-wiki-style~="chaos"],body[data-wiki-style~="fiction"],body[data-wiki-style~="stage"]) .target_t p {
+    margin-top: 3px;
+    margin-bottom: 3px;
+
+}
+
+:where(body[data-wiki-style~="arbitration"],body[data-wiki-style~="as"],body[data-wiki-style~="chaos"],body[data-wiki-style~="fiction"],body[data-wiki-style~="stage"]) .u_r div,
+:where(body[data-wiki-style~="arbitration"],body[data-wiki-style~="as"],body[data-wiki-style~="chaos"],body[data-wiki-style~="fiction"],body[data-wiki-style~="stage"]) .l_r div {
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+
+}
+
+:where(body[data-wiki-style~="arbitration"],body[data-wiki-style~="as"],body[data-wiki-style~="chaos"],body[data-wiki-style~="fiction"],body[data-wiki-style~="stage"]) .u_r p,
+:where(body[data-wiki-style~="arbitration"],body[data-wiki-style~="as"],body[data-wiki-style~="chaos"],body[data-wiki-style~="fiction"],body[data-wiki-style~="stage"]) .l_r p {
+    margin: 0px 0px 5px 0px;
+
+}
+
+:where(body[data-wiki-style~="arbitration"],body[data-wiki-style~="as"],body[data-wiki-style~="chaos"],body[data-wiki-style~="fiction"],body[data-wiki-style~="stage"]) #chart {
+    width: 100%;
+    min-width: 800px;
+    height: 100%;
+    overflow-x: scroll;
+
+}
+
+:where(body[data-wiki-style~="arbitration"],body[data-wiki-style~="as"],body[data-wiki-style~="chaos"],body[data-wiki-style~="fiction"],body[data-wiki-style~="stage"]) .chart_container {
+    height: 600px;
+    overflow-x: scroll;
+
+}
+
+:where(body[data-wiki-style~="arbitration"],body[data-wiki-style~="as"],body[data-wiki-style~="chaos"]) .bossguide_img_w {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+
+}
+
+:where(body[data-wiki-style~="arbitration"],body[data-wiki-style~="as"],body[data-wiki-style~="chaos"]) .bossguide_img {
+    height: 40px;
+
+}
+
+:where(body[data-wiki-style~="as"],body[data-wiki-style~="fiction"],body[data-wiki-style~="mons"],body[data-wiki-style~="stage"]) .a_section_head,
+:where(body[data-wiki-style~="as"],body[data-wiki-style~="fiction"],body[data-wiki-style~="mons"],body[data-wiki-style~="stage"]) .a_section_head span {
+    font-size: 17px;
+    font-weight: bold;
+    margin-left: 15px;
+    margin-right: 15px;
+    line-height: 1.55;
+
+}
+
+:where(body[data-wiki-style~="as"],body[data-wiki-style~="fiction"],body[data-wiki-style~="mons"],body[data-wiki-style~="stage"]) .a_section_content input,
+:where(body[data-wiki-style~="as"],body[data-wiki-style~="fiction"],body[data-wiki-style~="mons"],body[data-wiki-style~="stage"]) select {
+    width: 47%;
+    height: 40px;
+    padding: 5px 10px;
+    border-radius: 5px;
+    border: none;
+    background-color: rgba(255, 255, 255,1);
+    font-size: 15px;
+    margin: auto;
+
+}
+
+:where(body[data-wiki-style~="as"],body[data-wiki-style~="fiction"],body[data-wiki-style~="mons"],body[data-wiki-style~="stage"]) .a_section_head input,
+:where(body[data-wiki-style~="as"],body[data-wiki-style~="fiction"],body[data-wiki-style~="mons"],body[data-wiki-style~="stage"]) select {
+    width: 72px;
+    height: 28px;
+    border-radius: 5px;
+    border: none;
+    background-color: rgba(255, 255, 255,1);
+    font-size: 15px;
+    margin: auto;
+    text-align: center;
+
+}
+
+:where(body[data-wiki-style~="as"],body[data-wiki-style~="fiction"],body[data-wiki-style~="mons"],body[data-wiki-style~="stage"]) .a_section_content td {
+    line-height: 2.3;
+
+}
+
+:where(body[data-wiki-style~="banner_sr"],body[data-wiki-style~="blessing"],body[data-wiki-style~="codex"],body[data-wiki-style~="effect"],body[data-wiki-style~="formulae_sr"],body[data-wiki-style~="stage"],body[data-wiki-style~="yunli"]) .path schedule.active {
+    background-color: #2545ba;
+
+}
+
+:where(body[data-wiki-style~="banner_sr"],body[data-wiki-style~="codex"],body[data-wiki-style~="effect"],body[data-wiki-style~="formulae_sr"],body[data-wiki-style~="stage"],body[data-wiki-style~="yunli"]) section {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 0px 15px;
+
+}
+
+:where(body[data-wiki-style~="banner_sr"],body[data-wiki-style~="codex"],body[data-wiki-style~="effect"],body[data-wiki-style~="formulae_sr"],body[data-wiki-style~="stage"],body[data-wiki-style~="yunli"]) .image {
+    width: calc(100%);
+    margin: 0px 0px 10px 0px;
+
+}
+
+:where(body[data-wiki-style~="banner_sr"],body[data-wiki-style~="effect"],body[data-wiki-style~="formulae_sr"],body[data-wiki-style~="stage"],body[data-wiki-style~="yunli"]) .phases {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    margin-bottom: 10px;
+
+}
+
+:where(body[data-wiki-style~="banner_sr"],body[data-wiki-style~="effect"],body[data-wiki-style~="formulae_sr"],body[data-wiki-style~="stage"],body[data-wiki-style~="yunli"]) .icon img {
+    width: 100%;
+
+}
+
+:where(body[data-wiki-style~="banner_sr"],body[data-wiki-style~="effect"],body[data-wiki-style~="formulae_sr"],body[data-wiki-style~="stage"],body[data-wiki-style~="yunli"]) .icon_4 {
+    width: 40px;
+
+}
+
+:where(body[data-wiki-style~="banner_sr"],body[data-wiki-style~="effect"],body[data-wiki-style~="formulae_sr"],body[data-wiki-style~="stage"],body[data-wiki-style~="yunli"]) .icon_5 {
+    width: 48px;
+
+}
+
+:where(body[data-wiki-style~="banner_sr"],body[data-wiki-style~="effect"],body[data-wiki-style~="formulae_sr"],body[data-wiki-style~="stage"],body[data-wiki-style~="yunli"]) .pic {
+    position: relative;
+    margin: 4px;
+
+}
+
+:where(body[data-wiki-style~="banner_sr"],body[data-wiki-style~="effect"],body[data-wiki-style~="formulae_sr"],body[data-wiki-style~="stage"],body[data-wiki-style~="yunli"]) .pics {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 10px;
+
+}
+
+:where(body[data-wiki-style~="banner_sr"],body[data-wiki-style~="effect"],body[data-wiki-style~="formulae_sr"],body[data-wiki-style~="stage"],body[data-wiki-style~="yunli"]) .sch_2 {
+    font-size: 19px;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    cursor: pointer;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 12px;
+    margin-top: 15px;
+
+}
+
+:where(body[data-wiki-style~="banner_sr"],body[data-wiki-style~="effect"],body[data-wiki-style~="formulae_sr"],body[data-wiki-style~="stage"],body[data-wiki-style~="yunli"]) .num_4 {
+    font-size: 11px;
+
+}
+
+:where(body[data-wiki-style~="banner_sr"],body[data-wiki-style~="effect"],body[data-wiki-style~="formulae_sr"],body[data-wiki-style~="stage"],body[data-wiki-style~="yunli"]) .num_5 {
+    font-size: 12px;
+
+}
+
+:where(body[data-wiki-style~="banner_sr"],body[data-wiki-style~="effect"],body[data-wiki-style~="formulae_sr"],body[data-wiki-style~="stage"],body[data-wiki-style~="yunli"]) .avd {
+    font-size: 13px;
+
+}
+
+:where(body[data-wiki-style~="banner_sr"],body[data-wiki-style~="effect"],body[data-wiki-style~="formulae_sr"],body[data-wiki-style~="stage"],body[data-wiki-style~="yunli"]) .search .num {
+    background-color: #fff;
+    color: #000;
+
+}
+
+:where(body[data-wiki-style~="banner_sr"],body[data-wiki-style~="effect"],body[data-wiki-style~="formulae_sr"],body[data-wiki-style~="stage"],body[data-wiki-style~="yunli"]) .search {
+    margin-bottom: 10px;
+
+}
+
+:where(body[data-wiki-style~="banner_sr"],body[data-wiki-style~="effect"],body[data-wiki-style~="formulae_sr"],body[data-wiki-style~="stage"],body[data-wiki-style~="yunli"]) .but span {
+    font-weight: normal;
+    margin: 0;
+
+}
+
+:where(body[data-wiki-style~="blessing"],body[data-wiki-style~="du"],body[data-wiki-style~="su"]) .info {
+    position: absolute;
+    top: 0px;
+    left: 12px;
+    font-size: 25px;
+    cursor: pointer;
+
+}
+
+:where(body[data-wiki-style~="blessing"],body[data-wiki-style~="curio"],body[data-wiki-style~="du"],body[data-wiki-style~="su"]) .ml {
+    position: absolute;
+    top: -9px;
+    right: 12px;
+    font-size: 32px;
+    cursor: pointer;
+
+}
+
+:where(body[data-wiki-style~="blessing"],body[data-wiki-style~="du"],body[data-wiki-style~="su"]) .infou {
+    cursor: pointer;
+
+}
+
+:where(body[data-wiki-style~="char"],body[data-wiki-style~="item"],body[data-wiki-style~="mons"]) #back_2 {
+    margin: 0;
+    cursor: pointer;
+    background-color: white;
+    position: absolute;
+    width: calc(100%);
+    top: 0;
+    left: 0;
+    padding: 6px 0;
+    z-index: 114514;
+    display: none;
+    color: red;
+
+}
+
+:where(body[data-wiki-style~="char"],body[data-wiki-style~="item"],body[data-wiki-style~="mons"]) #back_2 closeicon {
+    position: absolute;
+    right: 10px;
+    font-size: 24px;
+
+}
+
+:where(body[data-wiki-style~="char"],body[data-wiki-style~="item"],body[data-wiki-style~="mons"]) #back_1 {
+    margin-top: -6px;
+    padding-top: 6px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    background-color: white;
+    color: red;
+
+}
+
+:where(body[data-wiki-style~="dialog"],body[data-wiki-style~="event"],body[data-wiki-style~="item"],body[data-wiki-style~="message"],body[data-wiki-style~="tut_sr"]) .a_w_r schedule {
+    background-color: #27363e;
+    width: 60px;
+    border-radius: 9px;
+    border-width: 0px;
+    display: flex;
+    justify-content: center;
+
+}
+
+:where(body[data-wiki-style~="dialog"],body[data-wiki-style~="event"],body[data-wiki-style~="item"],body[data-wiki-style~="message"],body[data-wiki-style~="tut_sr"]) .a_w_r schedule.active {
+    background-color: #2545ba;
+
+}
+
+:where(body[data-wiki-style~="dialog"],body[data-wiki-style~="event"],body[data-wiki-style~="item"],body[data-wiki-style~="message"],body[data-wiki-style~="tut_sr"]) .a_w_r img {
+    width: 40px;
+
+}
+
+:where(body[data-wiki-style~="dialog"],body[data-wiki-style~="event"],body[data-wiki-style~="message"],body[data-wiki-style~="tut_sr"]) .rar {
+    margin-top: 0;
+
+}
+
+:where(body[data-wiki-style~="effect"],body[data-wiki-style~="formulae_sr"],body[data-wiki-style~="stage"],body[data-wiki-style~="yunli"]) .ver_text,
+:where(body[data-wiki-style~="effect"],body[data-wiki-style~="formulae_sr"],body[data-wiki-style~="stage"],body[data-wiki-style~="yunli"]) .boss_img_wrap,
+:where(body[data-wiki-style~="effect"],body[data-wiki-style~="formulae_sr"],body[data-wiki-style~="stage"],body[data-wiki-style~="yunli"]) .elem_img_wrap {
+    width: 100%;
+    text-align: center;
+
+}
+
+:where(body[data-wiki-style~="effect"],body[data-wiki-style~="formulae_sr"],body[data-wiki-style~="stage"],body[data-wiki-style~="yunli"]) .toggle {
+    cursor: pointer;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    font-size: 27px;
+    text-align: center;
+    margin: 3px 0;
+
+}
+
+:where(body[data-wiki-style~="effect"],body[data-wiki-style~="formulae_sr"],body[data-wiki-style~="stage"],body[data-wiki-style~="yunli"]) .boss_img_wrap {
+    margin-bottom: 6px;
+
+}
+
+:where(body[data-wiki-style~="effect"],body[data-wiki-style~="formulae_sr"],body[data-wiki-style~="stage"],body[data-wiki-style~="yunli"]) .boss_img {
+    height: 55px;
+
+}
+
+:where(body[data-wiki-style~="effect"],body[data-wiki-style~="formulae_sr"],body[data-wiki-style~="stage"],body[data-wiki-style~="yunli"]) .table_wrap {
+    width: 100%;
+    overflow-x: scroll;
+
+}
+
+:where(body[data-wiki-style~="effect"],body[data-wiki-style~="formulae_sr"],body[data-wiki-style~="stage"],body[data-wiki-style~="yunli"]) .table {
+    width: 100%;
+    min-width: 400px;
+    table-layout: fixed;
+    font-size: 12px;
+
+}
+
+:where(body[data-wiki-style~="effect"],body[data-wiki-style~="formulae_sr"],body[data-wiki-style~="stage"],body[data-wiki-style~="yunli"]) td,
+:where(body[data-wiki-style~="effect"],body[data-wiki-style~="formulae_sr"],body[data-wiki-style~="stage"],body[data-wiki-style~="yunli"]) th {
+    padding: 10px 0;
+
+}
+
+:where(body[data-wiki-style~="effect"],body[data-wiki-style~="formulae_sr"],body[data-wiki-style~="stage"],body[data-wiki-style~="yunli"]) .avatar_img {
+    width: 25%;
+    max-width: 75px;
+    padding: 0px 2px;
+
+}
+
+:where(body[data-wiki-style~="effect"],body[data-wiki-style~="formulae_sr"],body[data-wiki-style~="stage"],body[data-wiki-style~="yunli"]) .avatar_img_wrap {
+    display: flex;
+    justify-content: center;
+    height: 100%;
+
+}
+
+:where(body[data-wiki-style~="event"],body[data-wiki-style~="item"],body[data-wiki-style~="tut_sr"]) .item-icon {
+    max-height: 60px;
+    max-width: 60px;
+    margin: auto;
+
+}
+
+:where(body[data-wiki-style~="event"],body[data-wiki-style~="item"],body[data-wiki-style~="tut_sr"]) .item-up {
+    width: calc(100% - 16px);
+    padding: 8px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+}

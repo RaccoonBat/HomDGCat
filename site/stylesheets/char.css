@@ -467,31 +467,6 @@ schedule {
     justify-content: center;
 }
 
-.as_2 {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    margin: 10px 0!important;
-    width: 100%;
-}
-
-.as_left_2 {
-    width: calc(min(25%, 110px));
-    margin: 0!important;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-}
-
-.as_right_2 {
-    display: flex;
-    flex-direction: column;
-    margin: 0 10px!important;
-    padding: 0;
-    justify-content: center;
-}
-
 .addprop img {
     height: 36px;
     position: relative;
@@ -1000,33 +975,6 @@ schedule {
     margin-right: 2px;
 }
 
-#back_2 {
-    margin: 0;
-    cursor: pointer;
-    background-color: white;
-    position: absolute;
-    width: calc(100%);
-    top: 0;
-    left: 0;
-    padding: 6px 0;
-    z-index: 114514;
-    display: none;
-    color: red;
-}
-#back_2 closeicon {
-    position: absolute;
-    right: 10px;
-    font-size: 24px;
-}
-#back_1 {
-    margin-top: -6px;
-    padding-top: 6px;
-    margin-bottom: 10px;
-    cursor: pointer;
-    background-color: white;
-    color: red;
-}
-
 #back_2:hover {
     color: black;
 }
@@ -1129,17 +1077,6 @@ table {
 
 .mtc_lower div .arrow {
     margin: 1px;
-}
-
-.as_left_name {
-    margin: 3px 0;
-    width: 100%;
-    text-align: center;
-    font-size: 14px;
-}
-
-.as_left_name a {
-    color: #f29e38;
 }
 
 .summon_icon {

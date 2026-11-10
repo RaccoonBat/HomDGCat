@@ -13,11 +13,6 @@
     padding-bottom: 30px;
 }
 
-.title {
-    color: #fff;
-    cursor: pointer;
-}
-
 .path schedule {
     background-color: #27363e;
     width: 80px;
@@ -30,10 +25,6 @@
     cursor: pointer;
 }
 
-.path schedule.active {
-    background-color: #2545ba;
-}
-
 .path img {
     width: 60px;
 }
@@ -41,13 +32,6 @@
 schedule.active {
     background-color: rgb(37, 69, 186);
     color: #fff;
-}
-
-section {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    margin: 0px 15px;
 }
 
 .blessing_card_area {
@@ -79,25 +63,6 @@ section {
     line-height: 2;
     font-weight: bold;
 }
-.image {
-    width: calc(100%);
-    margin: 0px 0px 10px 0px;
-}
-.phases {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
-    margin-bottom: 10px;
-}
-.icon img {
-    width: 100%;
-}
-.icon_4 {
-    width: 40px;
-}
-.icon_5 {
-    width: 48px;
-}
 .num {
     position: absolute;
     color: #eeeeee;
@@ -108,43 +73,6 @@ section {
     border-radius: 2px;
     background-color: #27363e;
     z-index: 1000;
-}
-.pic {
-    position: relative;
-    margin: 4px;
-}
-.pics {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    margin-top: 10px;
-}
-.sch_2 {
-    font-size: 19px;
-    -webkit-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-    cursor: pointer;
-    font-weight: bold;
-    text-align: center;
-    margin-bottom: 12px;
-    margin-top: 15px;
-}
-.num_4 {
-    font-size: 11px;
-}
-.num_5 {
-    font-size: 12px;
-}
-.avd {
-    font-size: 13px;
-}
-.search .num {
-    background-color: #fff;
-    color: #000;
-}
-.search {
-    margin-bottom: 10px;
 }
 
 .input_wrap {
@@ -177,11 +105,6 @@ section {
     padding: 5px 10px;
     border-radius: 5px;
     border: 2px solid;
-}
-
-.but span {
-    font-weight: normal;
-    margin: 0;
 }
 
 @media screen and (min-width: 500px) and (max-width: 800px) {

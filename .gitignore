@@ -5,3 +5,9 @@ tools/cache/
 __pycache__/
 *.py[cod]
 .pytest_cache/
+
+# Reproducible static export and local development dependencies
+dist/
+node_modules/
+.npm-cache/
+.sr-update-*/

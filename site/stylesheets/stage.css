@@ -13,29 +13,9 @@
     padding-bottom: 30px;
 }
 
-.title {
-    color: #fff;
-    cursor: pointer;
-}
-
 .top_wrap {
     color: #eeeeee;
     text-decoration: none;
-}
-
-.ver_text, .boss_img_wrap, .elem_img_wrap {
-    width: 100%;
-    text-align: center;
-}
-
-.toggle {
-    cursor: pointer;
-    -webkit-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-    font-size: 27px;
-    text-align: center;
-    margin: 3px 0;
 }
 
 .path schedule {
@@ -50,10 +30,6 @@
     cursor: pointer;
 }
 
-.path schedule.active {
-    background-color: #2545ba;
-}
-
 .path img {
     width: 60px;
 }
@@ -61,13 +37,6 @@
 schedule.active {
     background-color: rgb(37, 69, 186);
     color: #fff;
-}
-
-section {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    margin: 0px 15px;
 }
 
 .blessing_card_area {
@@ -97,25 +66,6 @@ section {
     font-size: 14px;
     line-height: 2;
 }
-.image {
-    width: calc(100%);
-    margin: 0px 0px 10px 0px;
-}
-.phases {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
-    margin-bottom: 10px;
-}
-.icon img {
-    width: 100%;
-}
-.icon_4 {
-    width: 40px;
-}
-.icon_5 {
-    width: 48px;
-}
 .num {
     position: absolute;
     color: #eeeeee;
@@ -126,43 +76,6 @@ section {
     border-radius: 2px;
     background-color: #27363e;
     z-index: 1000;
-}
-.pic {
-    position: relative;
-    margin: 4px;
-}
-.pics {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    margin-top: 10px;
-}
-.sch_2 {
-    font-size: 19px;
-    -webkit-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-    cursor: pointer;
-    font-weight: bold;
-    text-align: center;
-    margin-bottom: 12px;
-    margin-top: 15px;
-}
-.num_4 {
-    font-size: 11px;
-}
-.num_5 {
-    font-size: 12px;
-}
-.avd {
-    font-size: 13px;
-}
-.search .num {
-    background-color: #fff;
-    color: #000;
-}
-.search {
-    margin-bottom: 10px;
 }
 
 .input_wrap {
@@ -198,57 +111,13 @@ section {
     border: 2px solid;
 }
 
-.but span {
-    font-weight: normal;
-    margin: 0;
-}
-
-.boss_img_wrap {
-    margin-bottom: 6px;
-}
-
-.boss_img {
-    height: 55px;
-}
-
 .ver_text {
     font-weight: bold;
     font-size: 15px;
 }
 
-.table_wrap {
-    width: 100%;
-    overflow-x: scroll;
-}
-
 .table_wrap::-webkit-scrollbar {
     display: none;
-}
-
-.table {
-    width: 100%;
-    min-width: 400px;
-    table-layout: fixed;
-    font-size: 12px;
-}
-
-td, th {
-    padding: 10px 0;
-}
-
-.avatar_img {
-    width: 25%;
-    max-width: 75px;
-    padding: 0px 2px;
-}
-
-.avatar_img_wrap {
-    display: flex;
-    justify-content: center;
-    height: 100%;
-}.title {
-    color: #fff;
-    cursor: pointer;
 }
 
 .dl_button {
@@ -258,12 +127,6 @@ td, th {
     border: 1.5px solid black;
     font-size: 15px;
     width: max-content;
-}
-
-.ver, .floor, .floor_select {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
 }
 
 .ver {
@@ -281,11 +144,6 @@ td, th {
     cursor: pointer;
 }
 
-.ver_text p {
-    font-weight: bold;
-    text-align: center;
-}
-
 ::-webkit-scrollbar:horizontal {
     display: none;
 }
@@ -295,21 +153,11 @@ td, th {
     border-radius: 4px;
 }
 
-.title {
-    color: #fff;
-    cursor: pointer;
-}
-
 popdialog {
     height: 95%;
 }
 
 .mon_head schedule {
-    font-size: 14px;
-}
-
-.skill_phase schedule {
-    width: calc((100% - 120px) / 3);
     font-size: 14px;
 }
 
@@ -355,10 +203,6 @@ popdialog {
     width: 0px;
 }
 
-.monster_card div {
-    text-align: center;
-}
-
 .monleft {
     position: relative;
 }
@@ -376,17 +220,9 @@ popdialog {
     font-size: 13px
 }
 
-.monbottom {
-    margin-top: 4px;
-}
-
 .monright {
     margin-top: -3px;
     line-height: 1.4;
-}
-
-.mon_head, .mon_head section {
-    margin: 0px;
 }
 
 .mon_body, .mon_body_, .mon_csx {
@@ -404,22 +240,6 @@ popdialog {
     color: #eeeeee;
 }
 
-.a_section_head, .a_section_head span {
-    font-size: 17px;
-    font-weight: bold;
-    margin-left: 15px;
-    margin-right: 15px;
-    line-height: 1.55;
-}
-
-.dmg_show {
-    margin: 5px;
-    font-size: 15px;
-    width: 100%;
-    text-align: center;
-    font-weight: bold;
-}
-
 .a_section_content {
     font-size: 15px;
     margin-left: 15px;
@@ -433,28 +253,6 @@ popdialog {
     font-size: 15px;
     line-height: 30px;
     margin-left: 0px;
-}
-
-.a_section_content input, select {
-    width: 47%;
-    height: 40px;
-    padding: 5px 10px;
-    border-radius: 5px;
-    border: none;
-    background-color: rgba(255, 255, 255,1);
-    font-size: 15px;
-    margin: auto;
-}
-
-.a_section_head input, select {
-    width: 72px;
-    height: 28px;
-    border-radius: 5px;
-    border: none;
-    background-color: rgba(255, 255, 255,1);
-    font-size: 15px;
-    margin: auto;
-    text-align: center;
 }
 
 .a_section_small ::-webkit-scrollbar-thumb {
@@ -475,56 +273,11 @@ input[type=number] {
   -moz-appearance: textfield;
 }
 
-.DMG_input {
-    padding: 15px;
-}
-
-.DMG_Tut {
-    padding: 15px;
-    max-width: 90%;
-}
-
-.DMG_input p {
-    margin-top: 0px;
-    text-align: center;
-}
-
-.DMG_input input, select {
-    width: 100px;
-    height: 30px;
-    border-radius: 3px;
-    border: 1px solid;
-    font-size: 16px;
-    text-align: center;
-}
-
-.DMG_input button {
-    height: 40px;
-    width: 100px;
-    color: #fff;
-    background-color: rgb(37, 69, 186);
-    font-size: 15px;
-    border-radius: 0px;
-    top: 12px;
-    position: relative;
-    cursor: pointer;
-}
-
-.a_section_content td {
-    line-height: 2.3;
-}
-
 .statpageicon {
     width: 22px;
     margin-right: 5px;
     position: relative;
     top: 5px;
-}
-
-.stat_ {
-    font-weight: bold;
-    color: #fff;
-    padding-left: 0px;
 }
 
 .base_stat_input {
@@ -541,56 +294,6 @@ input[type=number] {
     min-width: 200px;
 }
 
-.base_stat_input div {
-    width: 100%;
-    margin: 0px;
-}
-
-.base_stat_input p {
-    font-size: 14px;
-    margin-top: 0px;
-    margin-bottom: 8px;
-    line-height: 1!important;
-    font-weight: bold;
-}
-
-.base_stat_lv, .base_stat_eg {
-    height: 20px!important;
-    width: 60px!important;
-    font-size: 14px!important;
-}
-
-.base_stat_hlg {
-    height: 30px;
-    width: 80px;
-    font-size: 13px;
-    padding: 0px!important;
-}
-
-.input_hlg {
-    font-size: 14px!important;
-    height: 33px!important;
-    width: 105px!important;
-}
-
-.up {
-    width: 35px;
-    height: 25px;
-    border-radius: 3px;
-    margin: 0px;
-    text-align: center;
-    padding: 0px;
-}
-
-.down {
-    width: 35px;
-    height: 25px;
-    border-radius: 3px;
-    margin: 0px 10px 0px 0px;
-    text-align: center;
-    padding: 0px;
-}
-
 .v_r, .v_l {
     font-weight: bold;
     font-size: 37px;
@@ -603,56 +306,9 @@ input[type=number] {
     user-select: none;
 }
 
-.v_r p, .v_l p {
-    margin: 0;
-}
-
 .ver_text_name, .ver_text_time {
     font-size: 15px;
     margin: 5px;
-}
-
-.wave_monsters {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-}
-
-.dpc {
-    line-height: 1.7;
-    margin-top: 8px;
-    margin-bottom: 0px;
-}
-
-.f_l, .f_r, .f_text {
-    font-size: 20px;
-    font-weight: bold;
-    margin-top: 10px;
-    -webkit-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-}
-
-.f_text {
-    margin-left: 5px;
-    margin-right: 5px;
-    width: 50px;
-    text-align: center;
-}
-
-.f_l, .f_r {
-    cursor: pointer;
-}
-
-.info_area p {
-    font-size: 14px;
-}
-
-.info_area {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
-    margin-top: 8px;
 }
 
 .buff, .target {
@@ -669,28 +325,6 @@ input[type=number] {
     margin-bottom: 10px;
     text-align: center;
     font-weight: bold;
-}
-
-.buff_desc {
-    margin-bottom: 0px;
-    line-height: 1.7;
-    margin-top: 11px;
-}
-
-.target_c {
-    margin-top: 6px;
-    margin-bottom: 6px;
-}
-
-.target_t {
-    margin-bottom: 0px;
-    line-height: 1.7;
-    margin-top: 6px;
-}
-
-.target_t p {
-    margin-top: 3px;
-    margin-bottom: 3px;
 }
 
 .star {
@@ -725,23 +359,6 @@ input[type=number] {
     text-align: center;
 }
 
-.u_r div, .l_r div {
-    font-size: 18px;
-    font-weight: bold;
-    text-align: center;
-}
-
-.u_r p, .l_r p {
-    margin: 0px 0px 5px 0px;
-}
-
-#chart {
-    width: 100%;
-    min-width: 800px;
-    height: 100%;
-    overflow-x: scroll;
-}
-
 #chart::-webkit-scrollbar {
     width: 0px;
     height: 0px;
@@ -750,11 +367,6 @@ input[type=number] {
 .chart_container::-webkit-scrollbar {
     width: 0px;
     height: 0px;
-}
-
-.chart_container {
-    height: 600px;
-    overflow-x: scroll;
 }
 
 @media screen and (min-width: 500px) and (max-width: 800px) {

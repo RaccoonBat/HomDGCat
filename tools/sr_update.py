@@ -2,6 +2,7 @@
 """崩铁文本增量更新工具。
 
 用法:
+    python tools/sr_update.py update    # 完整更新，成功后清理临时源文件
     python tools/sr_update.py fetch     # 下载官方源文件到 tools/cache/
     python tools/sr_update.py status    # 报告现状，不写任何文件
     python tools/sr_update.py build     # 把差集追加进 site/TextMap/（文本+对话）
@@ -77,6 +78,25 @@ def _cache_paths(cache: Cache):
     )
 
 
+def _state_path(args, name):
+    """Persistent ID allocation must survive deletion of downloaded sources."""
+    state = Path(args.root) / "tools" / "state" / name
+    legacy = Path(args.cache) / name
+    if not state.exists() and legacy.exists():
+        state.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copy2(legacy, state)
+    return state
+
+
+def _ledger_path(args):
+    path = Path(args.root) / "site" / "data" / "updates.json"
+    legacy = Path(args.cache) / "ledger.json"
+    if not path.exists() and legacy.exists():
+        path.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copy2(legacy, path)
+    return path
+
+
 def cmd_fetch(args) -> int:
     cache = Cache(args.cache)
     print("  拉取官方源文件")
@@ -121,7 +141,7 @@ def cmd_status(args) -> int:
         else:
             print(f"  {label:<16}未找到 ({target})")
 
-    ledger_path = cache.path_for("ledger.json")
+    ledger_path = _ledger_path(args)
     if ledger_path.exists():
         ledger = Ledger(ledger_path)
         print(f"  已记录增量: {len(ledger.runs)} 次运行")
@@ -180,7 +200,7 @@ def cmd_build(args) -> int:
     existing_ids = load_existing_talk_ids(talk_ch)
     used_hashes = collect_used_hashes(sr_json)
 
-    allocator = HashAllocator(used=used_hashes, map_path=cache.path_for("h_map.json"))
+    allocator = HashAllocator(used=used_hashes, map_path=_state_path(args, "h_map.json"))
     del used_hashes
     textmap_entries = build_textmap_entries(chs, eng, allocator, existing_keys)
     allocator.save()
@@ -207,7 +227,7 @@ def cmd_build(args) -> int:
     append_entries(talk_ch, talk_ch_entries, TALK_FIELD_ORDER, backup_dir=backup_dir)
     append_entries(talk_en, talk_en_entries, TALK_FIELD_ORDER, backup_dir=backup_dir)
 
-    ledger = Ledger(cache.path_for("ledger.json"))
+    ledger = Ledger(_ledger_path(args))
     ledger.record_run(
         version=manifest.get("version", "unknown"),
         sha=manifest.get("sha", ""),
@@ -296,7 +316,7 @@ def cmd_book(args) -> int:
 def cmd_report(args) -> int:
     root = Path(args.root)
     cache = Cache(args.cache)
-    ledger = Ledger(cache.path_for("ledger.json"))
+    ledger = Ledger(_ledger_path(args))
     if not ledger.runs:
         print("  尚无增量记录，请先运行 build。", file=sys.stderr)
         return 1
@@ -314,8 +334,8 @@ def cmd_report(args) -> int:
         "talk": collect_added_talk(talk_ch_records, talk_en_records, ledger),
     }
 
-    output_dir = root / "site" / "sr" / "textupd"
-    write_added_json(output_dir / "added.json", payload)
+    output_dir = root / "site" / "data"
+    write_added_json(output_dir / "updates.json", payload)
 
     summary = [
         "  增量摘要",
@@ -332,8 +352,40 @@ def cmd_report(args) -> int:
     text = "\n".join(summary)
     print(text)
     (cache.root / "report.md").write_text(text + "\n", encoding="utf-8")
-    print(f"  已生成: {output_dir / 'added.json'}")
+    print(f"  已生成: {output_dir / 'updates.json'}")
     print("  打开 http://localhost:9000/sr/textupd/ 查看")
+    return 0
+
+
+def cmd_update(args) -> int:
+    """Complete all consumers of the source cache before removing it."""
+    if cmd_fetch(args) != 0:
+        return 1
+    # A staging copy keeps the live collection intact if conversion fails.
+    from tempfile import TemporaryDirectory
+    from srtext.lifecycle import publish_files, cleanup_sources
+    root = Path(args.root)
+    cache = Path(args.cache)
+    cache.mkdir(parents=True, exist_ok=True)
+    # Publication uses atomic renames, so staging must share the repository volume.
+    with TemporaryDirectory(prefix=".sr-update-", dir=root) as stage_name:
+        stage = Path(stage_name)
+        for relative in (SR_JSON, TALK_CH, TALK_EN, TEXTMAP_DIR / "SR_Book_CH.js", TEXTMAP_DIR / "SR_Book_EN.js", Path("site/data/updates.json"), Path("tools/state/h_map.json")):
+            original = root / relative
+            if original.exists():
+                target = stage / relative
+                target.parent.mkdir(parents=True, exist_ok=True)
+                shutil.copy2(original, target)
+        staged = argparse.Namespace(**vars(args))
+        staged.root = str(stage)
+        staged.dry_run = False
+        for command in (cmd_build, cmd_book, cmd_report):
+            if command(staged) != 0:
+                return 1
+        relative_files = [file.relative_to(stage) for parent in (stage / "site", stage / "tools/state") if parent.exists() for file in parent.rglob("*") if file.is_file()]
+        publish_files(stage, root, relative_files)
+    cleanup_sources(cache)
+    print("  更新完成；临时源文件已清理，正式数据、ID 映射与更新记录已保留。")
     return 0
 
 
@@ -354,7 +406,10 @@ def build_parser() -> argparse.ArgumentParser:
     book_parser = subparsers.add_parser("book", help="重新生成 SR_Book_*.js（阅读物）")
     book_parser.add_argument("--dry-run", action="store_true", help="只报告，不写文件")
 
-    subparsers.add_parser("report", help="生成展示页")
+    subparsers.add_parser("report", help="生成更新索引（正文不重复保存）")
+    update_parser = subparsers.add_parser("update", help="完整更新并在成功后清理临时源文件")
+    update_parser.add_argument("--force", action="store_true")
+    update_parser.add_argument("--yes", action="store_true")
     return parser
 
 
@@ -366,6 +421,7 @@ def main(argv=None) -> int:
         "build": cmd_build,
         "book": cmd_book,
         "report": cmd_report,
+        "update": cmd_update,
     }
     return handlers[args.command](args)
 

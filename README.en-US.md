@@ -1,3 +1,5 @@
+> Pages now use a shared, locally bundled Vue entry (no npm installation). Keep using `python main.py serve` locally. For static hosting, run `python tools/site_pages.py export --output dist` and publish dist.
+
 [中文文档](README.zh-CN.md)
 
 # HomDGCat Wiki Mirror

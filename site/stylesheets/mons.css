@@ -7,11 +7,6 @@
     border-radius: 4px;
 }
 
-.title {
-    color: #fff;
-    cursor: pointer;
-}
-
 popdialog {
     height: 100%;
 }
@@ -27,32 +22,6 @@ divv div {
     margin-top: 15px;
     margin-bottom: 15px;
 }
-#back_2 {
-    margin: 0;
-    cursor: pointer;
-    background-color: white;
-    position: absolute;
-    width: calc(100%);
-    top: 0;
-    left: 0;
-    padding: 6px 0;
-    z-index: 114514;
-    display: none;
-    color: red;
-}
-#back_2 closeicon {
-    position: absolute;
-    right: 10px;
-    font-size: 24px;
-}
-#back_1 {
-    margin-top: -6px;
-    padding-top: 6px;
-    margin-bottom: 10px;
-    cursor: pointer;
-    background-color: white;
-    color: red;
-}
 
 #back_2:hover {
     color: black;
@@ -67,11 +36,6 @@ divv div {
 }
 
 .mon_head schedule {
-    font-size: 14px;
-}
-
-.skill_phase schedule {
-    width: calc((100% - 120px) / 3);
     font-size: 14px;
 }
 
@@ -138,10 +102,6 @@ divv div {
     max-width: calc(100% - 65px);
 }
 
-.mon_head, .mon_head section {
-    margin: 0px;
-}
-
 .mon_body, .mon_body_, .mon_csx {
     display: flex;
     justify-content: space-evenly;
@@ -160,22 +120,6 @@ divv div {
     background-color: #27363E;
     color: #eeeeee;
     margin: 2px 0;
-}
-
-.a_section_head, .a_section_head span {
-    font-size: 17px;
-    font-weight: bold;
-    margin-left: 15px;
-    margin-right: 15px;
-    line-height: 1.55;
-}
-
-.dmg_show {
-    margin: 5px;
-    font-size: 15px;
-    width: 100%;
-    text-align: center;
-    font-weight: bold;
 }
 
 .cts {
@@ -202,28 +146,6 @@ divv div {
     margin-left: 0px;
 }
 
-.a_section_content input, select {
-    width: 47%;
-    height: 40px;
-    padding: 5px 10px;
-    border-radius: 5px;
-    border: none;
-    background-color: rgba(255, 255, 255,1);
-    font-size: 15px;
-    margin: auto;
-}
-
-.a_section_head input, select {
-    width: 72px;
-    height: 28px;
-    border-radius: 5px;
-    border: none;
-    background-color: rgba(255, 255, 255,1);
-    font-size: 15px;
-    margin: auto;
-    text-align: center;
-}
-
 .a_section_small ::-webkit-scrollbar-thumb {
     background-color: #ffffff;
 }
@@ -242,41 +164,6 @@ input[type=number] {
     appearance: textfield;
     -moz-appearance: textfield;
     -webkit-appearance: textfield;
-}
-
-.DMG_input {
-    padding: 15px;
-}
-
-.DMG_Tut {
-    padding: 15px;
-    max-width: 90%;
-}
-
-.DMG_input p {
-    margin-top: 0px;
-    text-align: center;
-}
-
-.DMG_input input, select {
-    width: 100px;
-    height: 30px;
-    border-radius: 3px;
-    border: 1px solid;
-    font-size: 16px;
-    text-align: center;
-}
-
-.DMG_input button {
-    height: 40px;
-    width: 100px;
-    color: #fff;
-    background-color: rgb(37, 69, 186);
-    font-size: 15px;
-    border-radius: 0px;
-    top: 12px;
-    position: relative;
-    cursor: pointer;
 }
 
 #INPUT {
@@ -309,10 +196,6 @@ input[type=number] {
     display: flex;
     justify-content: center;
     margin: 15px 0 15px;
-}
-
-.a_section_content td {
-    line-height: 2.3;
 }
 
 .statpageicon {
@@ -354,25 +237,6 @@ input[type=number] {
     justify-content: center;
     margin: 0 10px;
     padding-top: 8px;
-}
-
-.base_stat_lv, .base_stat_eg {
-    height: 20px!important;
-    width: 60px!important;
-    font-size: 14px!important;
-}
-
-.base_stat_hlg {
-    height: 30px;
-    width: 80px;
-    font-size: 13px;
-    padding: 0px!important;
-}
-
-.input_hlg {
-    font-size: 14px!important;
-    height: 33px!important;
-    width: 105px!important;
 }
 
 .basestat {
@@ -471,42 +335,6 @@ input[type=number] {
     margin-bottom: 5px;
     font-weight: bold;
     /*color: #FFCC44;*/
-}
-
-.as_2 {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    margin: 10px 0!important;
-    width: 100%;
-}
-
-.as_left_2 {
-    width: calc(min(25%, 110px));
-    margin: 0!important;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-}
-
-.as_right_2 {
-    display: flex;
-    flex-direction: column;
-    margin: 0 10px!important;
-    padding: 0;
-    justify-content: center;
-}
-
-.as_left_name {
-    margin: 3px 0;
-    width: 100%;
-    text-align: center;
-    font-size: 14px;
-}
-
-.as_left_name a {
-    color: #f29e38;
 }
 
 .summon_icon {
