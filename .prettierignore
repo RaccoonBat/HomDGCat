@@ -1,0 +1,7 @@
+node_modules/
+dist/
+site/
+data-update/gamedata/
+data-update/*.py
+docs/
+package-lock.json

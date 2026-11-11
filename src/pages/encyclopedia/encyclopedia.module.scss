@@ -1,0 +1,221 @@
+.page {
+  display: grid;
+  gap: 28px;
+  min-width: 0;
+  header h1 {
+    margin: 10px 0 16px;
+  }
+}
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  > :first-child {
+    flex: 1 1 220px;
+  }
+  > :global(.ant-select) {
+    min-width: 140px;
+  }
+}
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(185px, 1fr));
+  gap: 24px;
+}
+.entry {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border: 0;
+  border-radius: 16px;
+  color: #fff;
+  // 图片区域直接透出页面背景，不再铺设星级渐变底色或矩形阴影。
+  background: transparent;
+  transition: transform 0.2s ease;
+  &:hover {
+    transform: translateY(-5px);
+    color: #fff;
+  }
+  &:focus-visible {
+    outline: 3px solid #568af4;
+    outline-offset: 4px;
+  }
+}
+.cover {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1 / 1.05;
+  object-fit: cover;
+  background: transparent;
+}
+.coneCover {
+  aspect-ratio: 3 / 4;
+  object-fit: contain;
+}
+.caption {
+  padding: 16px 14px;
+  background: #101a3080;
+  margin-top: auto;
+  strong {
+    display: block;
+    font-size: 18px;
+    margin-bottom: 8px;
+    overflow-wrap: anywhere;
+  }
+  :global(.ant-space) {
+    flex-wrap: wrap;
+    font-size: 12px;
+  }
+  :global(.ant-tag) {
+    background: #ffffff24;
+    color: #fff;
+    margin: 0;
+  }
+}
+.stars {
+  color: #ffe4a2;
+  font-size: 11px;
+  letter-spacing: 1px;
+}
+.scrollStatus {
+  min-height: 32px;
+  text-align: center;
+  opacity: 0.6;
+  font-size: 13px;
+}
+.overview {
+  display: grid;
+  grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.2fr);
+  align-items: start;
+  gap: 28px;
+}
+.artwork {
+  border-radius: 20px;
+  overflow: hidden;
+  // 角色和光锥详情共用透明画布，保留素材本身的透明通道。
+  background: transparent;
+  position: sticky;
+  top: 24px;
+}
+.portrait {
+  display: block;
+  width: 100%;
+  height: min(760px, 80vh);
+  min-height: 420px;
+  object-fit: contain;
+  background: transparent;
+}
+.conePortrait {
+  padding: 20px;
+}
+.skillColumn {
+  display: grid;
+  gap: 20px;
+  min-width: 0;
+  :global(.ant-card-head) {
+    flex-wrap: wrap;
+  }
+}
+.skills {
+  display: grid;
+  gap: 24px;
+  > :not(:last-child) {
+    padding-bottom: 24px;
+    border-bottom: 1px solid #8c99ad26;
+  }
+}
+.ability {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  min-width: 0;
+  > div {
+    min-width: 0;
+    flex: 1;
+  }
+}
+.skillIcon {
+  width: 44px;
+  height: 44px;
+  flex: 0 0 44px;
+  object-fit: contain;
+  border-radius: 10px;
+  background: #667b9e66;
+}
+.section {
+  min-width: 0;
+  h2 {
+    margin: 0 0 20px;
+  }
+}
+.rankGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+  :global(.ant-card-head-title) {
+    white-space: normal;
+  }
+}
+.rankTitle {
+  display: grid;
+  gap: 6px;
+  padding-block: 14px;
+  span {
+    font-size: 12px;
+    opacity: 0.6;
+  }
+  strong {
+    font-size: 16px;
+  }
+}
+@media (max-width: 900px) {
+  .overview {
+    grid-template-columns: 1fr;
+  }
+  .artwork {
+    position: static;
+  }
+  .portrait {
+    height: 560px;
+    min-height: 0;
+  }
+  .rankGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (max-width: 520px) {
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+  }
+  .rankGrid {
+    grid-template-columns: 1fr;
+  }
+  .caption {
+    padding: 12px 10px;
+    strong {
+      font-size: 16px;
+    }
+  }
+  .filters {
+    > :global(.ant-select) {
+      flex: 1 1 120px;
+      min-width: 0;
+    }
+  }
+  .portrait {
+    height: 420px;
+  }
+  .page {
+    gap: 22px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .entry {
+    transition: none;
+    &:hover {
+      transform: none;
+    }
+  }
+}

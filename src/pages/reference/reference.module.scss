@@ -1,0 +1,54 @@
+.page {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 32px 24px 60px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  min-width: 0;
+  h1 {
+    margin-bottom: 0;
+  }
+}
+.menu {
+  min-width: 0;
+}
+.filters {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  flex-wrap: wrap;
+  // 保留 Ant Design 内部输入区的弹性宽度，让清除按钮始终贴合外框右侧。
+}
+.list {
+  display: grid;
+  gap: 16px;
+  a {
+    color: inherit;
+    min-width: 0;
+  }
+  :global(.ant-card-head-title) {
+    white-space: normal;
+  }
+}
+.status {
+  text-align: center;
+  padding: 24px;
+  color: var(--ant-color-text-secondary);
+}
+.image {
+  width: 128px;
+  height: 128px;
+  object-fit: contain;
+}
+.illustration {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 20px auto;
+}
+@media (max-width: 600px) {
+  .page {
+    padding: 20px 12px 40px;
+  }
+}

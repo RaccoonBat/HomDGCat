@@ -1,13 +1,18 @@
-# 工具缓存：下载的官方源文件、H 分配表、ledger、备份
-tools/cache/
+# 数据更新过程中的下载缓存和临时文件
+data-update/cache/
+data-update/.cache/
 
 # Python
 __pycache__/
 *.py[cod]
 .pytest_cache/
+.cache/
 
 # Reproducible static export and local development dependencies
 dist/
 node_modules/
 .npm-cache/
 .sr-update-*/
+
+# TypeScript build cache
+*.tsbuildinfo

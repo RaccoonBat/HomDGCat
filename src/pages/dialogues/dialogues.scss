@@ -1,0 +1,54 @@
+.dialogue-page {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 24px;
+}
+.dialogue-layout {
+  display: grid;
+  grid-template-columns: 240px minmax(0, 1fr);
+  gap: 24px;
+  align-items: start;
+}
+.dialogue-layout aside {
+  position: sticky;
+  top: 80px;
+  max-height: calc(100vh - 100px);
+  overflow: auto;
+}
+.dialogue-search {
+  margin-bottom: 20px;
+}
+.dialogue-line {
+  padding: 20px 0;
+  border-bottom: 1px solid var(--ant-color-border, #ddd);
+  overflow-wrap: anywhere;
+}
+.dialogue-line p {
+  white-space: pre-wrap;
+  line-height: 1.9;
+  margin: 12px 0;
+}
+.dialogue-line--active {
+  border-left: 3px solid #1677ff;
+  padding-left: 18px;
+}
+.dialogue-loading {
+  min-height: 180px;
+}
+.dialogue-sentinel {
+  padding: 24px;
+  text-align: center;
+  color: #888;
+}
+@media (max-width: 700px) {
+  .dialogue-page {
+    padding: 16px;
+  }
+  .dialogue-layout {
+    grid-template-columns: 1fr;
+  }
+  .dialogue-layout aside {
+    position: static;
+    max-height: 220px;
+  }
+}
