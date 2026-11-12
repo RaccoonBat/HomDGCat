@@ -5,7 +5,7 @@ import urllib.request
 from .build import write_json
 from .source import REPOSITORY
 
-BASELINE = '4ce30f69b32dc259ab9a8da3ba57035485103221'
+BASELINE = '74a7b96fba32f00cf495a5c00b0311bd02207aaf'
 
 
 def release_metadata(collection):
@@ -18,8 +18,8 @@ def release_metadata(collection):
             previous[name] = json.load(response)
     old_characters = {row['AvatarID'] for name in ('AvatarConfig', 'AvatarConfigLD') for row in previous[name] if row.get('Release')}
     old_equipment = {row['EquipmentID'] for row in previous['EquipmentConfig'] if row.get('Release')}
-    release = {'version': manifest['version'], 'revision': manifest['revision'], 'sourceDate': '2026-10-19',
-               'baselineVersion': '4.5.0', 'baselineRevision': BASELINE,
+    release = {'version': manifest['version'], 'revision': manifest['revision'], 'sourceDate': '2026-11-11',
+               'baselineVersion': '4.6.0', 'baselineRevision': BASELINE,
                'newCharacters': [row['AvatarID'] for name in ('AvatarConfig', 'AvatarConfigLD') for row in current[name] if row.get('Release') and row['AvatarID'] not in old_characters],
                'newLightCones': [row['EquipmentID'] for row in current['EquipmentConfig'] if row.get('Release') and row['EquipmentID'] not in old_equipment]}
     write_json(collection, 'metadata/release.json', release)

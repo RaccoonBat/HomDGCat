@@ -1,1 +1,1 @@
-[{"ConfigID":1,"OfflineDays":90,"HcoinThresholdList":[100,300,700,1600],"ExtraHcoinNumList":[100,200,400,900],"ExtraHcoinUIProgressRatioList":[2,2,3,4]}]
+[{"ConfigID":1,"OfflineDays":90,"HcoinThresholdList":[100,300,700,1600],"ExtraHcoinNumList":[100,200,400,900],"ExtraRewardIDList":[0,0,0,0],"ExtraHcoinUIProgressRatioList":[2,2,3,4]},{"ConfigID":2,"OfflineDays":90,"HcoinThresholdList":[0,100,300,700,1600],"ExtraHcoinNumList":[0,100,200,400,900],"ExtraRewardIDList":[160008,0,0,0,0],"ExtraHcoinUIProgressRatioList":[0,2,2,3,4]}]

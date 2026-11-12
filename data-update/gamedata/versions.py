@@ -2,6 +2,7 @@
 import json
 import re
 import subprocess
+import time
 from collections import defaultdict
 from pathlib import Path
 
@@ -26,7 +27,17 @@ EARLY = '2.6及以前'
 
 
 def git(repo, *args, data=None):
-    return subprocess.check_output(['git','-C',str(repo),*args], input=data)
+    # 历史拉取使用 HTTP/1.1，并在连接重置时重试；本地 Git 错误不重试。
+    fetching = args[0] == 'fetch'
+    command = ['git', '-c', 'http.version=HTTP/1.1', '-C', str(repo), *args]
+    for attempt in range(3 if fetching else 1):
+        try:
+            return subprocess.check_output(command, input=data)
+        except subprocess.CalledProcessError:
+            if not fetching or attempt == 2:
+                raise
+            print(f'  Retrying history fetch ({attempt + 1}/2)', flush=True)
+            time.sleep(attempt + 1)
 
 
 def plan_history(repo):

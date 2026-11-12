@@ -62,10 +62,11 @@ site/ 只保存资料与图片，不是前端源码目录。site/data/common/log
 
 ## 数据来源
 
-当前本地清单版本为 **4.6.0**，具体文件、数量和校验信息以 site/data/manifest.json 为准。
+当前本地清单版本为 **4.7.0**，具体文件、数量和校验信息以 site/data/manifest.json 为准。
 
 - 游戏配置与文本来自 DimbreathBot/TurnBasedGameData 的固定快照。
 - 图片复用已收集的游戏素材；缺少的素材从 Mar-7th/StarRailRes 的固定提交收集，放在 images/resources/。
+- 缺失的怪物、行迹及阅读物配图按原始 SpriteOutput 路径，从 umaichanuwu/StarRailTextures 的固定快照补充；该贴图库目前为 4.3，仅用于补齐匹配素材，不改变游戏数据版本。
 - metadata/historical-sources.json 记录历史补录，包括 3.8.0 的教程分组 9333、9334。
 - metadata/versions.json 和 legacy-text-ids.json 保留版本标注及历史文本编号映射。
 - metadata/dialogue-worlds.json 是根据本地游戏脚本生成的世界／玩法归属索引，不是另一套游戏数据。

@@ -1,1 +1,1 @@
-{"language":"KR","version":"4.6.0","primaryTables":["EquipmentConfig"],"tables":["EquipmentAtlas","EquipmentConfig","EquipmentExpItemConfig","EquipmentExpType","EquipmentPromotionConfig","EquipmentSkillConfig"],"textCatalog":"/KR/texts/catalog.json"}
+{"language":"KR","version":"4.7.0","primaryTables":["EquipmentConfig"],"tables":["EquipmentAtlas","EquipmentConfig","EquipmentExpItemConfig","EquipmentExpType","EquipmentPromotionConfig","EquipmentSkillConfig"],"textCatalog":"/KR/texts/catalog.json"}

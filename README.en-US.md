@@ -61,10 +61,11 @@ site/ stores data and images. Frontend source lives in src/. JSON bundles in sit
 
 ## Data sources
 
-The local manifest currently identifies version **4.6.0**, Consult site/data/manifest.json for inventory and checksums.
+The local manifest currently identifies version **4.7.0**, Consult site/data/manifest.json for inventory and checksums.
 
 - Configuration and text: a pinned DimbreathBot/TurnBasedGameData snapshot.
 - Images: existing collected sprites and pinned Mar-7th/StarRailRes assets under images/resources/.
+- Missing monster, trace and readable images: exact SpriteOutput path matches from a pinned umaichanuwu/StarRailTextures snapshot. This texture source is currently at 4.3 and only supplements matching images; it does not change the game data version.
 - Historical restoration: metadata/historical-sources.json, including tutorial groups 9333 and 9334 from version 3.8.0.
 - Historical version labels and text ID aliases: metadata/versions.json and legacy-text-ids.json.
 - Derived dialogue classifications: metadata/dialogue-worlds.json, generated from local game scripts.

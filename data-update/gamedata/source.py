@@ -6,10 +6,15 @@ import zipfile
 from pathlib import Path, PurePosixPath
 
 REPOSITORY = 'DimbreathBot/TurnBasedGameData'
-REVISION = '74a7b96fba32f00cf495a5c00b0311bd02207aaf'
-VERSION = '4.6.0'
+REVISION = 'fe15a954eba1f24bf1bcd4003848710eced44996'
+VERSION = '4.7.0'
 ASSET_REPOSITORY = 'Mar-7th/StarRailRes'
-ASSET_REVISION = 'dbe8cdfcfb0bf657b9fe1cf92d5537f118ccb487'
+ASSET_REVISION = '03907e798b46f9eb109a1f882055cdf49ce3d374'
+# 补充库只用于精确匹配缺失的原始 SpriteOutput 路径；固定提交与子树避免截断。
+TEXTURE_REPOSITORY = 'umaichanuwu/StarRailTextures'
+TEXTURE_REVISION = '2a4b9a7eb7ac9db7f48d627fa5cdfd3822c902ce'
+TEXTURE_TREE = '2f2ec2a1f21c654c2b92f6daf60ce69ee7e10c27'
+TEXTURE_PREFIX = 'assets/asbres/spriteoutput/'
 LANGUAGES = {'CH': ('CHS',), 'EN': ('EN',), 'JP': ('JP',), 'KR': ('KR_0', 'KR_1')}
 
 

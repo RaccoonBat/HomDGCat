@@ -3,7 +3,9 @@ import json
 import shutil
 import subprocess
 import tempfile
+import time
 import urllib.request
+from http.client import HTTPException
 from pathlib import Path
 
 from .assets import sync_assets
@@ -12,15 +14,24 @@ from .historical import restore_historical
 from .model import entity_aliases
 from .publish import publish_collection
 from .release import release_metadata
-from .source import ASSET_REPOSITORY, ASSET_REVISION, download_snapshot
+from .source import ASSET_REPOSITORY, ASSET_REVISION, TEXTURE_REPOSITORY, TEXTURE_TREE, download_snapshot
 from .validate import seal_collection
 from .versions import build_version_index
 
 
 def fetch_json(url, destination):
+    """完整解析固定版本清单后才写入；传输中断时重试，不留下半份 JSON。"""
     request = urllib.request.Request(url, headers={'User-Agent':'HomDGCat-full-data/1.0'})
-    with urllib.request.urlopen(request, timeout=90) as response:
-        value = json.load(response)
+    for attempt in range(3):
+        try:
+            with urllib.request.urlopen(request, timeout=90) as response:
+                value = json.load(response)
+            break
+        except (OSError, HTTPException, json.JSONDecodeError):
+            if attempt == 2:
+                raise
+            print(f'  Retrying interrupted JSON download ({attempt + 1}/2): {url}', flush=True)
+            time.sleep(attempt + 1)
     destination.write_text(json.dumps(value, ensure_ascii=False), encoding='utf-8')
 
 
@@ -39,6 +50,7 @@ def complete_update(root, archive=None):
         restore_historical(collection)
         tree = working / 'assets-tree.json'
         fetch_json(f'https://api.github.com/repos/{ASSET_REPOSITORY}/git/trees/{ASSET_REVISION}?recursive=1', tree)
+        fetch_json(f'https://api.github.com/repos/{TEXTURE_REPOSITORY}/git/trees/{TEXTURE_TREE}?recursive=1', working / 'texture-tree.json')
         for name in ('characters','character_skills','character_ranks','light_cones','relic_sets','items'):
             fetch_json(f'https://raw.githubusercontent.com/{ASSET_REPOSITORY}/{ASSET_REVISION}/index_new/cn/{name}.json', working / ('asset-index-'+name+'.json'))
         assets = sync_assets(collection, site, tree, working, working / 'assets')
