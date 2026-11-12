@@ -23,6 +23,8 @@ export const router = createBrowserRouter([
         element: <CollectionPage key="light-cones" category="light-cones" />,
       },
       { path: 'sr/light-cones/:id', element: <DetailPage category="light-cones" /> },
+      { path: 'sr/relics', element: <ReferenceListPage key="relics" category="relics" /> },
+      { path: 'sr/relics/:id', element: <ReferenceDetailPage category="relics" /> },
       { path: 'sr/monsters', element: <MonsterListPage /> },
       { path: 'sr/monsters/:id', element: <MonsterDetailPage /> },
       { path: 'sr/monster', element: <MonsterListPage /> },

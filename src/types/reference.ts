@@ -1,11 +1,11 @@
-/** 文字资料的路由分类。 */
-export type ReferenceCategory = 'readables' | 'achievements' | 'records';
+/** 资料列表与详情支持的路由分类。 */
+export type ReferenceCategory = 'readables' | 'achievements' | 'records' | 'relics';
 /** 资料页面的公共参数。 */
 export interface ReferencePageProps {
   /** 当前资料分类。 */
   category: ReferenceCategory;
 }
-/** 二级菜单分组，由原始世界或成就系列表提供。 */
+/** 二级菜单分组：源表世界、成就系列，或按实际部位区分的遗器类型。 */
 export interface ReferenceGroup {
   /** 原始分组主键。 */
   id: string;
@@ -33,7 +33,7 @@ export interface ReferenceEntry {
 export interface ReferenceIndex {
   /** 全部资料索引。 */
   entries: ReferenceEntry[];
-  /** 世界或成就系列分类。 */
+  /** 世界、成就系列或遗器类型分类。 */
   groups: ReferenceGroup[];
 }
 /** 纵向详情正文面板。 */

@@ -7,6 +7,7 @@ A local reference site built with React Hooks, TypeScript, Ant Design, and SCSS.
 ## Features
 
 - Characters and light cones: filters, infinite scrolling, artwork and skill details.
+- Relics: Cavern Relic and Planar Ornament categories, set effects and piece stories.
 - Monsters: combat variants, level scaling, weaknesses, resistances and skills.
 - Readables: world categories, title/body search, and complete text directly in the list.
 - Dialogue: body and speaker search in a Web Worker, world and Divergent Universe categories.

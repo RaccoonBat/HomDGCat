@@ -10,6 +10,7 @@ interface NavigationItem {
 export const navigationItems: readonly NavigationItem[] = [
   { label: '角色', path: '/sr/characters' },
   { label: '光锥', path: '/sr/light-cones' },
+  { label: '遗器', path: '/sr/relics' },
   { label: '怪物', path: '/sr/monsters' },
   { label: '阅读物', path: '/sr/readables' },
   { label: '对话', path: '/sr/dialogues' },

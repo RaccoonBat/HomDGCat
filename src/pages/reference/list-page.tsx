@@ -38,7 +38,12 @@ export function ReferenceListPage({ category }: ReferencePageProps) {
     JSON.stringify([category, group, query]),
     filtered.length,
   );
-  const title = { readables: '阅读物', achievements: '成就', records: '唱片与音乐' }[category];
+  const title = {
+    readables: '阅读物',
+    achievements: '成就',
+    records: '唱片与音乐',
+    relics: '遗器',
+  }[category];
   return (
     <section className={styles.page}>
       <Typography.Text type="secondary">星穹档案 / {title}</Typography.Text>
@@ -55,7 +60,13 @@ export function ReferenceListPage({ category }: ReferencePageProps) {
       {state.status === 'success' && (
         <>
           <nav
-            aria-label={category === 'achievements' ? '成就系列' : '星球与世界'}
+            aria-label={
+              category === 'achievements'
+                ? '成就系列'
+                : category === 'relics'
+                  ? '遗器类型'
+                  : '星球与世界'
+            }
             className={styles.menu}
           >
             <Menu
@@ -76,7 +87,13 @@ export function ReferenceListPage({ category }: ReferencePageProps) {
           <div className={styles.filters}>
             <Input
               aria-label="搜索资料"
-              placeholder={category === 'readables' ? '搜索阅读物标题或正文内容' : '搜索名称或说明'}
+              placeholder={
+                category === 'readables'
+                  ? '搜索阅读物标题或正文内容'
+                  : category === 'relics'
+                    ? '搜索遗器名称或套装效果'
+                    : '搜索名称或说明'
+              }
               value={query}
               allowClear
               onChange={(event) => setQuery(event.target.value)}
@@ -129,6 +146,9 @@ export function ReferenceListPage({ category }: ReferencePageProps) {
                   to={`/sr/${category}/${entry.id}${group ? `?group=${encodeURIComponent(group)}` : ''}`}
                 >
                   <Card hoverable title={<GameText text={entry.name} />}>
+                    {entry.image && (
+                      <GameImage src={entry.image} alt={entry.name} className={styles.image} />
+                    )}
                     <GameText text={entry.description || '查看详细资料'} />
                   </Card>
                 </Link>

@@ -64,9 +64,6 @@ export function HomePage() {
                   <Button>{item.label}</Button>
                 </Link>
               ))}
-              {['遗器', '关卡'].map((label) => (
-                <Tag key={label}>{label}</Tag>
-              ))}
             </Space>
           </Card>
         </>

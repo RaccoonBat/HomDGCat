@@ -1,6 +1,7 @@
 import { getManifest } from './game-data';
 import { array, localize, number, string, table } from './data-store';
 import { formatParameters } from '@/utils/game-text';
+import { getRelicIndex, getRelicDetail } from './relics';
 import type { Manifest, Row } from './data-store';
 import type {
   ReferenceCategory,
@@ -45,7 +46,7 @@ const schemas = {
 } as const;
 
 /** 读取原表及其分类，所有网络请求可被页面取消。 */
-async function source(category: ReferenceCategory, signal: AbortSignal) {
+async function source(category: Exclude<ReferenceCategory, 'relics'>, signal: AbortSignal) {
   const manifest: Manifest = await getManifest(signal);
   const schema = schemas[category];
   const [rows, groups] = await Promise.all([
@@ -138,6 +139,7 @@ export async function getReferenceIndex(
   signal: AbortSignal,
 ): Promise<ReferenceIndex> {
   if (category === 'readables') return getReadableIndex(signal);
+  if (category === 'relics') return getRelicIndex(signal);
   const { manifest, schema, rows, groups } = await source(category, signal);
   const localized = await localize(
     {
@@ -180,6 +182,7 @@ export async function getReferenceDetail(
   id: string,
   signal: AbortSignal,
 ): Promise<ReferenceDetail | null> {
+  if (category === 'relics') return getRelicDetail(id, signal);
   const { manifest, schema, rows, groups } = await source(category, signal);
   const raw = rows.find((row) => String(row[schema.id]) === id);
   if (!raw) return null;
